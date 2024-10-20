@@ -184,7 +184,7 @@
             </div>
             <div class="row">
                 @foreach ($trendingProduct as $tp)
-                    <div class="col-lg-3 col-md-6 col-12 d-flex align-items-stretch">
+                    <div class="col-lg-3 col-md-6 col-12">
                         <x-product-card :product="$tp" />
                     </div>
                 @endforeach
@@ -207,7 +207,7 @@
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="row">
                         @foreach ($specialOffer as $offer)
-                            <div class="col-lg-4 col-md-4 col-12 d-flex align-items-stretch">
+                            <div class="col-lg-4 col-md-6 col-12">
                                 <!-- Start Single Product -->
                                 <x-product-card :product="$offer" />
                                 <!-- End Single Product -->

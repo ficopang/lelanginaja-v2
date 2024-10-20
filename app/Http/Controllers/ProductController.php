@@ -6,11 +6,13 @@ use App\Models\Bid;
 use App\Models\Category;
 use App\Models\Log;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Watchlist;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -23,6 +25,10 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $products = Product::where('user_id', Auth::user()->id)->paginate(4);
+
+        $title = 'Delete Product';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
 
         return view('product.manage', compact('products', 'categories'));
     }
@@ -68,18 +74,24 @@ class ProductController extends Controller
         $product->min_bid_increment = $validatedData['min-bid-increment'];
         $product->min_bid_users = $validatedData['min-bid-users'];
 
-        if ($request->hasFile('product-image')) {
-            $image = $request->file('product-image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('product-images', $imageName, 'public');
-            $product->image_url = "/" . $imagePath;
-        }
-
         $product->reset_time = $validatedData['reset-time'];
         $product->start_time = $validatedData['start-time'];
         $product->end_time = $validatedData['end-time'];
 
         $product->save();
+
+        if ($request->hasFile('product-image')) {
+            $image = $request->file('product-image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('product-images', $imageName, 'public');
+            $image = new ProductImage();
+            $image->product_id = $product->id;
+            $image->image_url = "/" . $imagePath;
+            $image->save();
+            // $product->image_url = "/" . $imagePath;
+        }
+
+        Alert::success('Success', 'Product added successfully');
 
         return redirect()->route('products.index')->with('success', 'Product added successfully');
     }
@@ -133,7 +145,7 @@ class ProductController extends Controller
             'starting-price' => 'required|numeric',
             'min-bid-increment' => 'required|numeric',
             'min-bid-users' => 'required|numeric',
-            'product-image' => 'required|image',
+            'product-image' => 'image',
             'reset-time' => 'required|numeric',
             'start-time' => 'required|date',
             'end-time' => 'required|date',
@@ -146,20 +158,24 @@ class ProductController extends Controller
         $product->min_bid_increment = $request->input('min-bid-increment');
         $product->min_bid_users = $request->input('min-bid-users');
 
-        if ($request->hasFile('product-image')) {
-            $image = $request->file('product-image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('product-images', $imageName, 'public');
-            $product->image_url = "/" . $imagePath;
-        }
-
         $product->reset_time = $validatedData['reset-time'];
         $product->start_time = $validatedData['start-time'];
         $product->end_time = $validatedData['end-time'];
 
         $product->save();
 
-        return redirect()->route('products.index');
+        if ($request->hasFile('product-image')) {
+            $image = $request->file('product-image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('product-images', $imageName, 'public');
+            $image = new ProductImage();
+            $image->product_id = $product->id;
+            $image->image_url = "/" . $imagePath;
+            $image->save();
+            // $product->image_url = "/" . $imagePath;
+        }
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -171,7 +187,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->logs()->delete();
-        $product->transaction->report->delete();
+        $product->transaction ? $product->transaction->report->delete() : null;
         $product->transaction()->delete();
         $product->bids()->delete();
         $product->images()->delete();

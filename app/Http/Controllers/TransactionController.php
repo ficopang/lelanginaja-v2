@@ -33,10 +33,13 @@ class TransactionController extends Controller
             ->get();
 
         $totalBidAmount = $wonProducts->sum(function ($product) {
-            return $product->getTotalBidAmount();
+            return $product->getTotalBidAmountAttribute();
         });
 
-        return view('cart.checkout', compact('wonProducts', 'totalBidAmount'));
+        $log = new LogController();
+        $recommendations = $log->recommendProducts(auth()->id())->take(3);
+
+        return view('cart.checkout', compact('wonProducts', 'totalBidAmount', 'recommendations'));
     }
 
     public function saveShippingAddres(Request $request)

@@ -208,7 +208,7 @@ message-area
     width: 100%;
     background-color: #fff;
     border-radius: 0.3rem;
-    height: 90vh;
+    height: 80vh;
     overflow: hidden;
     min-height: calc(100% - 1rem);
 }
@@ -254,7 +254,7 @@ message-area
 
 .chat-area .form-control {
     display: block;
-    width: 80%;
+    width: 85%;
     padding: 0.375rem 0.75rem;
     font-size: 14px;
     font-weight: 400;
@@ -923,16 +923,17 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     font-family: "Jost", sans-serif;
 }
 
-.my-items .single-item-list .action-btn li {
+.action-btn li {
     display: inline-block;
     margin-right: 8px;
 }
 
-.my-items .single-item-list .action-btn li:last-child {
+.action-btn li:last-child {
     margin: 0;
 }
 
-.my-items .single-item-list .action-btn li a {
+.action-btn li a,
+.action-btn li button {
     height: 30px;
     width: 30px;
     line-height: 30px;
@@ -943,8 +944,126 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     display: block;
 }
 
-.my-items .single-item-list .action-btn li a:hover {
-    color: #fff;
+.action-btn li a:hover,
+.action-btn li button:hover {
+    color: #fff !important;
     background: #0167f3;
     border-color: transparent;
+}
+
+.checkout-sidebar-coupon .shopping-item {
+    background: #fff;
+    z-index: 99;
+    border-radius: 4px;
+}
+
+.checkout-sidebar-coupon .shopping-item .dropdown-cart-header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.checkout-sidebar-coupon .shopping-item .dropdown-cart-header span {
+    text-transform: capitalize;
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checkout-sidebar-coupon .shopping-item .dropdown-cart-header a {
+    float: right;
+    text-transform: capitalize;
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checkout-sidebar-coupon .shopping-item .dropdown-cart-header a:hover {
+    color: #0167f3;
+}
+
+.checkout-sidebar-coupon .shopping-item .shopping-list li {
+    overflow: hidden;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 10px 0;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.checkout-sidebar-coupon .shopping-item .shopping-list li .remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 20px;
+    width: 20px;
+    line-height: 18px;
+    text-align: center;
+    background: #fff;
+    color: #222;
+    border-radius: 50%;
+    font-size: 9px;
+    border: 1px solid #ededed;
+    padding-left: 1px;
+}
+
+.checkout-sidebar-coupon .shopping-item .bottom {
+    text-align: center;
+}
+
+.checkout-sidebar-coupon .shopping-item .bottom .total {
+    overflow: hidden;
+    display: block;
+    padding-bottom: 10px;
+}
+
+.checkout-sidebar-coupon .shopping-item .bottom .total span {
+    text-transform: capitalize;
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+    float: left;
+}
+
+.checkout-sidebar-coupon .shopping-item .bottom .total .total-amount {
+    float: right;
+    font-size: 14px;
+}
+
+.checkout-sidebar-coupon .shopping-item .bottom .button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.checkout-sidebar-coupon .shopping-item .bottom .button .btn {
+    width: 100%;
+}
+
+.checkout-sidebar-coupon .shopping-item .shopping-list li .cart-img-head {
+    width: 40%;
+}
+
+@media (max-width: 767px) {
+    .checkout-sidebar-coupon .shopping-item .shopping-list li .cart-img-head {
+        width: 20%;
+        margin-right: 12px;
+    }
+}
+
+.checkout-sidebar-coupon .shopping-item .shopping-list li .cart-img {
+    border: 1px solid #ededed;
+    overflow: hidden;
+    height: 80px;
+    width: 80px;
+    border-radius: 4px;
+    float: left;
+    margin-right: 20px;
+}
+
+@media (max-width: 767px) {
+    .checkout-sidebar-coupon .shopping-item .shopping-list li .cart-img {
+        height: 60px;
+        width: 60px;
+        margin-right: 10px;
+    }
 }

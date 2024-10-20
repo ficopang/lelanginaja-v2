@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('balance');
             $table->string('phone_number');
+            $table->text('address')->nullable();
             $table->rememberToken();
             $table->boolean('isAdmin')->default(0);
             $table->boolean('ban')->default(0);

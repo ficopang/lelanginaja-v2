@@ -142,7 +142,8 @@
                                     <div class="shopping-item" style="z-index: 1000;">
                                         <div class="dropdown-cart-header">
                                             <span>{{ $wonProducts->count() }} Items</span>
-                                            <a class="text-primary fw-" href="/cart">View All</a>
+                                            <a class="text-primary fw-" href="{{ route('cart.checkout') }}">View
+                                                All</a>
                                         </div>
                                         <ul class="shopping-list">
                                             @foreach ($wonProducts as $product)
@@ -307,6 +308,8 @@
     </div>
     <!-- End Breadcrumbs -->
 @endif
+
+@include('sweetalert::alert')
 
 <div class="bg-light">
     @yield('content')

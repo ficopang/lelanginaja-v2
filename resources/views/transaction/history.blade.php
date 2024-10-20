@@ -85,9 +85,6 @@
                                     <li>Description: {{ $tr->product->description }}</li>
                                     <li>Starting Price: {{ 'Rp' . $tr->product->starting_price }}</li>
                                     <li>Min Bid Increment: {{ 'Rp' . $tr->product->min_bid_increment }}</li>
-                                    <li>Image: <img
-                                            src="{{ $tr->product->images()->first() ? asset('storage' . $tr->product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                            alt="Product 1" width="100"></li>
                                     <li>Start Time: {{ $tr->product->start_time }}</li>
                                     <li>End Time: {{ $tr->product->end_time }}</li>
                                     <li>Status: {{ $tr->status }}</li>

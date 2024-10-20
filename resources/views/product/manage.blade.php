@@ -35,7 +35,8 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane fade p-2" id="add-product">
-                                <h3 class="fw-bold mb-2">Add Product</h3>
+                                <h5 class="fw-bold">ADD PRODUCT</h5>
+                                <hr>
 
                                 <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                                     @csrf
@@ -104,11 +105,22 @@
 
 
                             <div class="tab-pane fade show active p-2" id="view-products">
-                                <h3 class="fw-bold mb-2">View Product List</h3>
-
+                                <h5 class="fw-bold">VIEW PRODUCT LIST</h5>
+                                <hr>
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                {{-- menampilkan error validasi --}}
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 @endif
 
@@ -172,15 +184,10 @@
                                                         </li>
 
                                                         <li class="border rounded-circle shadow-sm">
-                                                            <form action="{{ route('products.destroy', $product->id) }}"
-                                                                method="POST"
-                                                                onsubmit="return confirm('Are you sure you want to delete this product?')">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn p-0 border-0 text-danger"><i
-                                                                        class="lni lni-trash-can"></i></button>
-                                                            </form>
+                                                            <a href="{{ route('products.destroy', $product->id) }}"
+                                                                class="btn p-0 border-0 text-danger"
+                                                                data-confirm-delete="true"><i
+                                                                    class="lni lni-trash-can"></i></a>
                                                         </li>
                                                     </ul>
                                                 </div>

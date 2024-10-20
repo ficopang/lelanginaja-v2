@@ -6,9 +6,20 @@
     <!-- Start my product Area -->
     <div class="container section">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body p-4">
 
-                <h3 class="fw-bold mb-2">Update Product</h3>
+                <h5 class="fw-bold">EDIT PRODUCT</h5>
+                <hr>
+
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
                     @csrf
@@ -50,8 +61,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="product-image" class="form-label">Product Image</label>
-                        <input type="file" class="form-control" id="product-image" name="product-image" accept="image/*"
-                            required>
+                        <input type="file" class="form-control" id="product-image" name="product-image" accept="image/*">
                     </div>
                     <div class="mb-3">
                         <label for="reset-time" class="form-label">Reset Time</label>

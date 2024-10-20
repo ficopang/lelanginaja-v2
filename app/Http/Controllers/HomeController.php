@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -31,17 +32,6 @@ class HomeController extends Controller
         $topRated = Product::inRandomOrder()->limit(3)->get();
 
         return view('index', compact('carousel', 'smallBanner', 'categories', 'trendingProduct', 'specialOffer', 'banner', 'offer', 'bestSellers', 'newArrivals', 'topRated'));
-    }
-
-    public function lang(Request $request, $locale)
-    {
-        if (!in_array($locale, ['en', 'id'])) {
-            abort(400);
-        }
-
-        App::setLocale($locale);
-
-        return redirect()->back();
     }
 
     public function category(Request $request)

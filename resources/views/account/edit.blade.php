@@ -38,9 +38,9 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel"
+                            <div class="tab-pane fade show active p-2" id="v-pills-profile" role="tabpanel"
                                 aria-labelledby="v-pills-profile-tab">
-                                <h6>YOUR PROFILE INFORMATION</h6>
+                                <h5 class="fw-bold">YOUR PROFILE INFORMATION</h5>
                                 <hr>
                                 <form action="{{ route('account.update') }}" method="POST">
                                     @method('PUT')
@@ -62,12 +62,12 @@
                                     <div class="mb-3">
                                         <label for="name" class="form-label">First Name</label>
                                         <input type="text" class="form-control" id="first_name" name="first_name"
-                                            value="{{ $user->firstname }}" placeholder="Enter your first name">
+                                            value="{{ $user->first_name }}" placeholder="Enter your first name">
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Last Name</label>
                                         <input type="text" class="form-control" id="last_name" name="last_name"
-                                            value="{{ $user->lastname }}" placeholder="Enter your last name">
+                                            value="{{ $user->last_name }}" placeholder="Enter your last name">
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email address</label>
@@ -87,9 +87,9 @@
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-security" role="tabpanel"
+                            <div class="tab-pane fade p-2" id="v-pills-security" role="tabpanel"
                                 aria-labelledby="v-pills-security-tab">
-                                <h6>SECURITY SETTINGS</h6>
+                                <h5 class="fw-bold">SECURITY SETTINGS</h5>
                                 <hr>
                                 <form action="{{ route('account.updatePassword') }}" method="POST">
                                     @method('PUT')
@@ -112,10 +112,9 @@
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="v-pills-account" role="tabpanel"
+                            <div class="tab-pane fade p-2" id="v-pills-account" role="tabpanel"
                                 aria-labelledby="v-pills-account-tab">
-                                <h6>YOUR PROFILE INFORMATION</h6>
-
+                                <h5 class="fw-bold">YOUR PROFILE INFORMATION</h5>
                                 <hr>
                                 <div class="form-group">
                                     <label class="d-block text-danger fw-bold">Delete Account</label>

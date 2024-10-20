@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -29,8 +30,8 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail(auth()->id());
-        $user->firstname = $request->first_name;
-        $user->lastname = $request->last_name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
         $user->phone_number = $request->phone;
         $user->address = $request->address;
         $user->save();
@@ -41,7 +42,7 @@ class UserController extends Controller
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'password' => 'required|alpha_num|min:8',
+            'password' => 'required',
             'new_password' => 'required|alpha_num|min:8|required_with:confirm_new_password|same:confirm_new_password',
             'confirm_new_password' => 'required'
         ]);
@@ -50,6 +51,7 @@ class UserController extends Controller
         if (Hash::check($request->password, $user->password)) {
             $user->password = Hash::make($request->new_password);
             $user->save();
+
             return back()->with('success', 'Password updated successfully');
         } else {
             return back()->withErrors('Wrong password');
@@ -62,8 +64,9 @@ class UserController extends Controller
         if (Hash::check($request->password, $user->password)) {
             $user = User::findOrFail(auth()->id());
 
-            $user->reports()->delete();
-            $user->watchlist()->delete();
+            $user->productReports()->delete();
+            $user->transactionReports()->delete();
+            $user->watchlists()->delete();
             $user->sentChats()->delete();
             $user->receivedChats()->delete();
 
@@ -88,7 +91,7 @@ class UserController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect()->route('login')->withSuccess('User deleted successfully.');
+            return redirect()->route('login')->withSuccess('Account deleted successfully.');
         } else {
             return back()->withErrors('Wrong password');
         }

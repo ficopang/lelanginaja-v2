@@ -7,13 +7,13 @@
     <div class="container shopping-cart section">
         <div class="card">
             <div class="card-body">
-                <div class="cart-list-head">
+                <div class="my-items">
                     <!-- Cart List Title -->
-                    <div class="cart-list-title">
-                        <div class="row">
+                    <div class="item-list-title">
+                        <div class="row align-items-center">
                             <div class="col-lg-1 col-md-1 col-12">
                             </div>
-                            <div class="col-lg-4 col-md-3 col-12">
+                            <div class="col-lg-5 col-md-3 col-12">
                                 <p>Product Name</p>
                             </div>
                             <div class="col-lg-2 col-md-2 col-12">
@@ -22,7 +22,7 @@
                             <div class="col-lg-2 col-md-2 col-12">
                                 <p>Latest Bid</p>
                             </div>
-                            <div class="col-lg-1 col-md-2 col-12">
+                            <div class="col-lg-2 col-md-2 col-12">
                                 <p>Action</p>
                             </div>
                         </div>
@@ -30,14 +30,14 @@
                     <!-- End Cart List Title -->
                     @foreach ($watchlists as $watchlistItem)
                         <!-- Cart Single List list -->
-                        <div class="cart-single-list">
+                        <div class="single-item-list">
                             <div class="row align-items-center">
                                 <div class="col-lg-1 col-md-1 col-12">
                                     <a href="/product/{{ $watchlistItem->product->id }}"><img
                                             src="{{ $watchlistItem->product->images()->first() ? asset('storage' . $watchlistItem->product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
                                             alt="#"></a>
                                 </div>
-                                <div class="col-lg-4 col-md-3 col-12">
+                                <div class="col-lg-5 col-md-3 col-12">
                                     <h5 class="product-name"><a href="/product/{{ $watchlistItem->product->id }}">
                                             {{ $watchlistItem->product->name }}</a></h5>
                                 </div>
@@ -48,12 +48,19 @@
                                     <p>{{ $watchlistItem->product->bids()->latest('created_at')->first() ? $watchlistItem->product->bids()->latest('created_at')->first()->user->first_name : '-' }}
                                     </p>
                                 </div>
-                                <div class="col-lg-1 col-md-2 col-12">
-                                    <form action="{{ route('products.watchlist', $watchlistItem->product->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button class="remove-item"><i class="lni lni-close"></i></button>
-                                    </form>
+                                <div class="col-lg-2 col-md-3 col-12">
+                                    <ul class="action-btn">
+                                        <li>
+                                            <form action="{{ route('products.watchlist', $watchlistItem->product->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                <button
+                                                    class="btn btn-sm shadow rounded-circle btn-outline-warning d-flex
+                                                    justify-content-center align-items-center icon-circle text-secondary"><i
+                                                        class="bx bx-low-vision"></i></button>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -86,5 +93,5 @@
         </section>
         <!-- End Recommendation Product Area -->
     @endif
-    <!--/ End Shopping Cart -->
+    <!--/ End Recommendation Product Area -->
 @endsection

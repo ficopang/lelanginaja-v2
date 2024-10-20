@@ -21,9 +21,13 @@
                                         <div class="msg-search">
                                             <input type="text" class="form-control" id="inlineFormInputGroup"
                                                 placeholder="Search" aria-label="search">
-                                            <a class="add" href=#><img class="img-fluid"
-                                                    src="https://mehedihtml.com/chatbox/assets/img/add.svg"
-                                                    alt="add"></a>
+                                            <ul class="action-btn">
+                                                <li>
+                                                    <a class="btn btn-sm rounded-circle border border-2 btn-outline-dark d-flex
+                                                    justify-content-center align-items-center"
+                                                        href=#><i class="bx bx-plus"></i></a>
+                                                </li>
+                                            </ul>
                                         </div>
 
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -35,7 +39,7 @@
                                         </ul>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body p-0">
                                         <!-- chat-list -->
                                         <div class="chat-lists">
                                             <div class="tab-content" id="myTabContent">
@@ -45,8 +49,9 @@
                                                     <div class="chat-list">
                                                         @foreach ($userLists as $list)
                                                             <a href="{{ '/account/chat/' . $list->id }}"
-                                                                class="d-flex align-items-center">
-                                                                <div class="flex-shrink-0 fs-4 m-2 ">
+                                                                class="d-flex align-items-center bg-light p-1"
+                                                                style="{{ $user->id == $list->id ? 'background-color: #BCC1CA !important;' : '' }}">
+                                                                <div class="flex-shrink-0 fs-4 m-2">
                                                                     <i class="lni lni-user"></i>
                                                                 </div>
                                                                 <div class="flex-grow-1 ms-3">
@@ -117,8 +122,9 @@
                                                 <input type="text" class="form-control" aria-label="message…"
                                                     placeholder="Write message…" name="chat-message">
 
-                                                <button type="submit"><i class="ni ni-paper-plane" aria-hidden="true"></i>
-                                                    Send</button>
+                                                <button class="bg-primary" type="submit"><i class="ni ni-paper-plane"
+                                                        aria-hidden="true"></i>
+                                                    Send <i class="bx bx-send"></i></button>
                                             </form>
                                         </div>
                                     @endif
