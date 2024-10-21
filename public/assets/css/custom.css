@@ -1067,3 +1067,22 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
         margin-right: 10px;
     }
 }
+
+.avatar {
+    position: relative;
+    width: 2.375rem;
+    height: 2.375rem;
+    cursor: pointer;
+}
+
+.avatar .avatar-initial {
+    position: absolute;
+    inset: 0px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    background-color: rgb(238, 237, 240);
+    font-size: 0.9375rem;
+}

@@ -27,7 +27,8 @@
 
         #latestBid,
         #latestSecondBid,
-        #latestThirdBid {
+        #latestThirdBid,
+        #latestFourthBid {
             transition: transform 0.5s ease, opacity 0.5s ease;
             position: relative;
         }
@@ -63,13 +64,13 @@
         }
 
         /* Opacity transition for the third bid */
-        #latestThirdBid.slide-left {
+        #latestFourthBid.slide-left {
             opacity: 0;
             transform: translateX(50%);
             /* Less horizontal movement for third bid */
         }
 
-        #latestThirdBid.slide-reset {
+        #latestFourthBid.slide-reset {
             opacity: 1;
             transform: translateX(0);
         }
@@ -141,8 +142,10 @@
                                 <div class="d-flex flex-column gap-1">
                                     <p class="fw-bold">Current Bid</p>
                                     <div class="d-flex align-items-center gap-2">
-                                        <img class="border border-primary rounded-circle" alt="avatar2"
-                                            style="width: 32px;" src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" />
+                                        <div class="avatar"><span
+                                                class="avatar-initial rounded-circle {{ $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'bg-primary' : 'bg-secondary' }}">
+                                                {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name[0] : '' }}</span>
+                                        </div>
                                         <span class="d-inline text-primary fw-bold" id="last-bidder">
                                             {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name . ' ' . $product->bids()->latest('created_at')->first()->user->last_name : '' }}
                                         </span>
@@ -176,8 +179,10 @@
                                             {{ $product->bids->count() > 2 ? formatRupiah($product->getTotalBidAmountAttribute($product->bids[$product->bids->count() - 3]->id)) : '' }}
                                         @endif
                                     </div>
-                                    <div class="col pt-1 text-dark">
-                                        {{ formatRupiah($product->starting_price) }}
+                                    <div id="latestFourthBid" class="col pt-1">
+                                        @if ($product->auction_type != 'close')
+                                            {{ $product->bids->count() > 3 ? formatRupiah($product->getTotalBidAmountAttribute($product->bids[$product->bids->count() - 4]->id)) : '' }}
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -393,24 +398,29 @@
             const latestBid = document.getElementById('latestBid');
             const secondBid = document.getElementById('latestSecondBid');
             const thirdBid = document.getElementById('latestThirdBid');
+            const fourthBid = document.getElementById('latestFourthBid');
 
             // Reset animation classes
             latestBid.classList.remove('slide-reset', 'highlight-bid');
             secondBid.classList.remove('slide-reset');
             thirdBid.classList.remove('slide-reset');
+            fourthBid.classList.remove('slide-reset');
 
             // Force reflow to reset animation states
             void latestBid.offsetHeight;
             void secondBid.offsetHeight;
             void thirdBid.offsetHeight;
+            void fourthBid.offsetHeight;
 
             // Add the slide-left animation to slide bids
             latestBid.classList.add('slide-left');
             secondBid.classList.add('slide-left');
             thirdBid.classList.add('slide-left');
+            fourthBid.classList.add('slide-left');
 
             setTimeout(() => {
                 // Shift bids after sliding
+                fourthBid.innerHTML = thirdBid.innerHTML;
                 thirdBid.innerHTML = secondBid.innerHTML;
                 secondBid.innerHTML = latestBid.innerHTML;
                 latestBid.innerHTML = newBid;
@@ -419,10 +429,12 @@
                 latestBid.classList.remove('slide-left');
                 secondBid.classList.remove('slide-left');
                 thirdBid.classList.remove('slide-left');
+                fourthBid.classList.remove('slide-left');
 
                 latestBid.classList.add('slide-reset');
                 secondBid.classList.add('slide-reset');
                 thirdBid.classList.add('slide-reset');
+                fourthBid.classList.add('slide-reset');
 
                 // Add the highlight effect to the latest bid after reset
                 latestBid.classList.add('highlight-bid');

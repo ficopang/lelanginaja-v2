@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="images">
                                         <img src="{{ $cr->images()->first() ? asset('storage' . $cr->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                            alt="#">
+                                            alt="{{ $cr->name }}">
                                     </div>
                                 </div>
                             @endforeach
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="images">
                                     <img src="{{ $smallBanner->images()->first() ? asset('storage' . $smallBanner->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                        alt="#">
+                                        alt="{{ $smallBanner->name }}">
                                 </div>
                             </div>
                             <!-- End Small Banner -->
@@ -161,7 +161,7 @@
                             </ul>
                             <div class="images">
                                 <img src="{{ asset('storage' . $cat->products()->with('images')->first()->images()->first()->image_url) }}"
-                                    alt="#" />
+                                    alt="{{ $cat->name }}" />
                             </div>
                         </div>
                         <!-- End Single Category -->
@@ -236,7 +236,7 @@
                         </div>
                         <div class="images">
                             <img src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                alt="#">
+                                alt="{{ $product->name }}">
                         </div>
                     </div>
                     <!-- End Banner -->
@@ -245,7 +245,7 @@
                     <div class="offer-content">
                         <div class="image">
                             <img src="{{ $offer->images()->first() ? asset('storage' . $offer->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                alt="#" />
+                                alt="{{ $offer->name }}" />
                             <span class="sale-tag">-50%</span>
                         </div>
                         <div class="text">
@@ -302,7 +302,7 @@
                             <div class="list-image">
                                 <a href="/product/{{ $bs->id }}"><img
                                         src="{{ $bs->images()->first() ? asset('storage' . $bs->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                        alt="#" /></a>
+                                        alt="{{ $bs->name }}" /></a>
                             </div>
                             <div class="list-info">
                                 <h3>
@@ -322,7 +322,7 @@
                             <div class="list-image">
                                 <a href="/product/{{ $newarr->id }}"><img
                                         src="{{ $newarr->images()->first() ? asset('storage' . $newarr->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                        alt="#" /></a>
+                                        alt="{{ $newarr->name }}" /></a>
                             </div>
                             <div class="list-info">
                                 <h3>
