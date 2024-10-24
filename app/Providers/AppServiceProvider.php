@@ -35,13 +35,26 @@ class AppServiceProvider extends ServiceProvider
             })
                 ->whereDoesntHave('transaction')
                 ->where('end_time', '<', Carbon::now()->addHours(7))
+                ->where(function ($query) use ($userId) {
+                    $query->where(function ($subQuery) use ($userId) {
+                        $subQuery->where('auction_type', 'close')
+                            ->whereRaw('products.id IN (SELECT b.product_id FROM bids b JOIN products p ON b.product_id = p.id GROUP BY b.user_id, b.product_id ORDER BY SUM(b.bid_amount) + p.starting_price DESC)'); 
+                    })->orWhere(function ($subQuery) use ($userId) {
+                        $subQuery->where('auction_type', 'open')
+                            ->whereHas('bids', function ($bidQuery) use ($userId) {
+                                $bidQuery->where('user_id', $userId)
+                                    ->orderBy('created_at', 'desc')
+                                    ->limit(1); 
+                            });
+                    });
+                })
                 ->get();
 
-            $totalBidAmount = $wonProducts->sum(function ($product) {
+            $totalPrice = $wonProducts->sum(function ($product) {
                 return $product->getTotalBidAmountAttribute();
             });
 
-            $view->with('categories', $categories)->with('wonProducts', $wonProducts)->with('totalBidAmount', $totalBidAmount);
+            $view->with('categories', $categories)->with('wonProducts', $wonProducts)->with('totalPrice', $totalPrice);
         });
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -66,6 +67,19 @@ class Product extends Model
         }
 
         return $totalBidAmount + $this->starting_price;
+    }
+
+    public function getHighestBidUser()
+    {
+        // Get the user with the highest total bid amount
+        $highestBidUser = $this->bids()
+            ->select('user_id', DB::raw('SUM(bid_amount) + ' . $this->starting_price . ' as total_bid_amount'))
+            ->groupBy('user_id')
+            ->orderByDesc('total_bid_amount')
+            ->first();
+
+        // Return the user ID or null if no bids found
+        return $highestBidUser ? $highestBidUser->user_id : null;
     }
 
     public function undiscountedPrice()

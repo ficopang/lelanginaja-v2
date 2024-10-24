@@ -165,7 +165,7 @@
                                         <div class="bottom">
                                             <div class="total">
                                                 <span>Total</span>
-                                                <span class="total-amount">{{ formatRupiah($totalBidAmount) }}</span>
+                                                <span class="total-amount">{{ formatRupiah($totalPrice) }}</span>
                                             </div>
                                             <div class="button">
                                                 <a href="{{ route('cart.checkout') }}"
