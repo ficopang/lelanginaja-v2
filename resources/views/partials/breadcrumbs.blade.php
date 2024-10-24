@@ -16,7 +16,7 @@
                              @if (!is_null($breadcrumb->url) && !$loop->last)
                                  <li><a href="{{ $breadcrumb->url }}">
                                          @if ($loop->first)
-                                             <i class="lni lni-home"></i>
+                                             <i class="bx bx-home"></i>
                                          @endif {{ $breadcrumb->title }}
                                      </a></li>
                              @else

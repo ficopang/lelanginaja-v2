@@ -22,7 +22,7 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <span class="title">How does LelanginAja work?</span><i class="lni lni-plus"></i>
+                                    <span class="title">How does LelanginAja work?</span><i class="bx bx-plus"></i>
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
@@ -42,7 +42,7 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     <span class="title">How do I participate in an auction?</span><i
-                                        class="lni lni-plus"></i>
+                                        class="bx bx-plus"></i>
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -61,7 +61,7 @@
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <span class="title">How long do the auctions last?</span><i class="lni lni-plus"></i>
+                                    <span class="title">How long do the auctions last?</span><i class="bx bx-plus"></i>
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -81,7 +81,7 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                     <span class="title">Can I sell my own items on LelanginAja?</span><i
-                                        class="lni lni-plus"></i>
+                                        class="bx bx-plus"></i>
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
@@ -103,7 +103,7 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                     <span class="title">Is bidding binding, and what happens after winning an
-                                        auction?</span><i class="lni lni-plus"></i>
+                                        auction?</span><i class="bx bx-plus"></i>
                                 </button>
                             </h2>
                             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
@@ -125,7 +125,7 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                                     <span class="title">How secure are transactions on LelanginAja?</span><i
-                                        class="lni lni-plus"></i>
+                                        class="bx bx-plus"></i>
                                 </button>
                             </h2>
                             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"

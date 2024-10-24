@@ -2,6 +2,10 @@
 
 @section('title', 'About us')
 
+@section('custom-header')
+<link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
+@endsection
+
 @section('content')
     <!-- Start About Area -->
     <section class="about-us section">
@@ -11,7 +15,7 @@
                     <div class="content-left">
                         <img src="https://via.placeholder.com/540x420" alt="#">
                         <a href="https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM"
-                            class="glightbox video"><i class="lni lni-play"></i></a>
+                            class="glightbox video"><i class="bx bx-play"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-12">
@@ -59,9 +63,9 @@
                                 <h3>Fico Pangestu</h3>
                                 <h5>Project Manager</h5>
                                 <ul class="social">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-instagram-original"></i></a>
                                     </li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-linkedin-square"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -80,9 +84,9 @@
                                 <h3>Renaldo Furiady</h3>
                                 <h5>Financial Director</h5>
                                 <ul class="social">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-instagram-original"></i></a>
                                     </li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-linkedin-square"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -101,9 +105,9 @@
                                 <h3>Brian Giovanni</h3>
                                 <h5>Marketing Director</h5>
                                 <ul class="social">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-instagram-original"></i></a>
                                     </li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-linkedin-square"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -122,9 +126,9 @@
                                 <h3>Nelsen Gabriel</h3>
                                 <h5>Lead Designer</h5>
                                 <ul class="social">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-instagram-original"></i></a>
                                     </li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-linkedin-square"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -143,9 +147,9 @@
                                 <h3>Kevin Priatna</h3>
                                 <h5>Backend Developer</h5>
                                 <ul class="social">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-instagram-original"></i></a>
                                     </li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a>
+                                    <li><a href="javascript:void(0)"><i class="bx bxl-linkedin-square"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -157,4 +161,8 @@
         </div>
     </section>
     <!-- End Team Area -->
+@endsection
+
+@section('custom-js')
+<script src="{{ asset('assets/js/glightbox.min.j') }}s"></script>
 @endsection

@@ -53,7 +53,7 @@
                                     <input type="text" id="search-query" name="query" placeholder="Search">
                                 </div>
                                 <div class="search-btn">
-                                    <button type="submit"><i class="lni lni-search-alt"></i></button>
+                                    <button type="submit"><i class="bx bx-search"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -113,11 +113,11 @@
                                             <button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab"
                                                 data-bs-target="#nav-grid" type="button" role="tab"
                                                 aria-controls="nav-grid" aria-selected="true"><i
-                                                    class="lni lni-grid-alt"></i></button>
+                                                    class="bx bx-grid-alt"></i></button>
                                             <button class="nav-link" id="nav-list-tab" data-bs-toggle="tab"
                                                 data-bs-target="#nav-list" type="button" role="tab"
                                                 aria-controls="nav-list" aria-selected="false"><i
-                                                    class="lni lni-list"></i></button>
+                                                    class="bx bx-list-ul"></i></button>
                                         </div>
                                     </nav>
                                 </div>
@@ -141,14 +141,14 @@
                                                 @if ($products->onFirstPage())
                                                     <!-- No previous page available -->
                                                     <li class="disabled">
-                                                        <span><i class="lni lni-chevron-left"></i></span>
+                                                        <span><i class="bx bx-chevron-left"></i></span>
                                                     </li>
                                                 @else
                                                     <!-- Previous page available -->
                                                     <li>
                                                         <a
                                                             href="{{ $products->previousPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="lni lni-chevron-left"></i>
+                                                            <i class="bx bx-chevron-left"></i>
                                                         </a>
                                                     </li>
                                                 @endif
@@ -165,13 +165,13 @@
                                                     <li>
                                                         <a
                                                             href="{{ $products->nextPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="lni lni-chevron-right"></i>
+                                                            <i class="bx bx-chevron-right"></i>
                                                         </a>
                                                     </li>
                                                 @else
                                                     <!-- No next page available -->
                                                     <li class="disabled">
-                                                        <span><i class="lni lni-chevron-right"></i></span>
+                                                        <span><i class="bx bx-chevron-right"></i></span>
                                                     </li>
                                                 @endif
                                             </ul>
@@ -237,7 +237,7 @@
                                                                         @csrf
                                                                         <button
                                                                             class="d-flex align-items-center justify-content-center gap-1 btn {{ auth()->user()->watchlists->contains('product_id', $product->id)? 'btn-dark text-white': 'btn-outline-dark' }}""><i
-                                                                                class="lni lni-eye"></i> Watchlist</button>
+                                                                                class="bx bx-low-vision"></i> Watchlist</button>
                                                                     </form>
                                                                 @endauth
                                                                 <a href="/product/{{ $product->id }}"
@@ -259,14 +259,14 @@
                                                 @if ($products->onFirstPage())
                                                     <!-- No previous page available -->
                                                     <li class="disabled">
-                                                        <span><i class="lni lni-chevron-left"></i></span>
+                                                        <span><i class="bx bx-chevron-left"></i></span>
                                                     </li>
                                                 @else
                                                     <!-- Previous page available -->
                                                     <li>
                                                         <a
                                                             href="{{ $products->previousPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="lni lni-chevron-left"></i>
+                                                            <i class="bx bx-chevron-left"></i>
                                                         </a>
                                                     </li>
                                                 @endif
@@ -283,13 +283,13 @@
                                                     <li>
                                                         <a
                                                             href="{{ $products->nextPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="lni lni-chevron-right"></i>
+                                                            <i class="bx bx-chevron-right"></i>
                                                         </a>
                                                     </li>
                                                 @else
                                                     <!-- No next page available -->
                                                     <li class="disabled">
-                                                        <span><i class="lni lni-chevron-right"></i></span>
+                                                        <span><i class="bx bx-chevron-right"></i></span>
                                                     </li>
                                                 @endif
                                             </ul>

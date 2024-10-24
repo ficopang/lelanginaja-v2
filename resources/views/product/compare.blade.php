@@ -74,7 +74,7 @@
                                     <div id="suggestions1" class="suggestions-box"></div>
                                 </div>
                                 <div class="search-btn">
-                                    <button type="submit"><i class="lni lni-search-alt"></i></button>
+                                    <button type="submit"><i class="bx bx-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                     <div id="suggestions2" class="suggestions-box"></div>
                                 </div>
                                 <div class="search-btn">
-                                    <button type="submit"><i class="lni lni-search-alt"></i></button>
+                                    <button type="submit"><i class="bx bx-search"></i></button>
                                 </div>
                             </div>
                         </div>

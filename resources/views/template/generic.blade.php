@@ -13,10 +13,8 @@
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/boxicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
     @yield('custom-header')
@@ -71,7 +69,7 @@
                                         accesskey="q">
                                 </div>
                                 <div class="search-btn">
-                                    <button type="submit"><i class="lni lni-search-alt"></i></button>
+                                    <button type="submit"><i class="bx bx-search"></i></button>
                                 </div>
                             </form>
                             <!-- navbar search Ends -->
@@ -93,7 +91,7 @@
                                 <div class="navbar-cart me-2">
                                     <div class="cart-items">
                                         <a href="javascript:void(0)" class="main-btn">
-                                            <i class="lni lni-eye"></i>
+                                            <i class="bx bx-low-vision"></i>
                                             <span class="total-items">{{ auth()->user()->watchlists->count() }}</span>
                                         </a>
                                         <!-- Shopping Item -->
@@ -135,7 +133,7 @@
                                 </div>
                                 <div class="cart-items">
                                     <a href="javascript:void(0)" class="main-btn">
-                                        <i class="lni lni-cart"></i>
+                                        <i class="bx bx-cart"></i>
                                         <span class="total-items">{{ $wonProducts->count() }}</span>
                                     </a>
                                     <!-- Shopping Item -->
@@ -203,7 +201,7 @@
                         <div class="nav-inner">
                             <!-- Start Mega Category Menu -->
                             <div class="mega-category-menu">
-                                <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
+                                <span class="cat-button"><i class="bx bx-menu"></i>All Categories</span>
                                 <ul class="sub-category">
                                     @foreach ($categories as $category)
                                         <li><a href="/category?id={{ $category->id }}">{{ $category->name }}</a>
@@ -264,16 +262,16 @@
                             <h5 class="title">Follow Us:</h5>
                             <ul>
                                 <li>
-                                    <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
+                                    <a href="javascript:void(0)"><i class="bx bxl-facebook-circle"></i></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a>
+                                    <a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><i class="lni lni-instagram"></i></a>
+                                    <a href="javascript:void(0)"><i class="bx bxl-instagram"></i></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><i class="lni lni-skype"></i></a>
+                                    <a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -299,7 +297,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="{{ route('home') }}"><i class="lni lni-home"></i> Home</a></li>
+                        <li><a href="{{ route('home') }}"><i class="bx bx-home"></i> Home</a></li>
                         <li>@yield('title')</li>
                     </ul>
                 </div>
@@ -377,14 +375,14 @@
                             <ul class="app-btn">
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <i class="lni lni-apple"></i>
+                                        <i class="bx bx-apple"></i>
                                         <span class="small-title">Download on the</span>
                                         <span class="big-title">App Store</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <i class="lni lni-play-store"></i>
+                                        <i class="bx bx-play-store"></i>
                                         <span class="small-title">Download on the</span>
                                         <span class="big-title">Google Play</span>
                                     </a>
@@ -446,10 +444,10 @@
                             <li>
                                 <span>Follow Us On:</span>
                             </li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="lni lni-google"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="bx bxl-facebook-circle"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="bx bxl-instagram"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="bx bxl-google"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -512,13 +510,12 @@
 
 <!-- ========================= scroll-top ========================= -->
 <a href="#" class="scroll-top">
-    <i class="lni lni-chevron-up"></i>
+    <i class="bx bx-chevron-up"></i>
 </a>
 
 <!-- ========================= JS here ========================= -->
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
-<script src="{{ asset('assets/js/glightbox.min.j') }}s"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script>
     // Countdown Timers

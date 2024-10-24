@@ -2749,13 +2749,13 @@ ol {
     color: #0167f3;
 }
 
-.navbar-nav .nav-item a.dd-menu::after {
-    content: "\ea5e";
-    font: normal normal normal 1em/1 "LineIcons";
+.navbar-nav .nav-item a.dd-menu::before {
+    content: "\ea4a";
+    font: normal normal normal 1em/1 "boxicons";
     position: absolute;
     right: -20px;
     font-size: 12px;
-    top: 50%;
+    top: 40%;
     margin-left: 5px;
     margin-top: -4px;
     -webkit-transition: all 0.3s ease-out 0s;
@@ -2764,14 +2764,14 @@ ol {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .navbar-nav .nav-item a.dd-menu::after {
+    .navbar-nav .nav-item a.dd-menu::before {
         right: -15;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px),
     (max-width: 767px) {
-    .navbar-nav .nav-item a.dd-menu::after {
+    .navbar-nav .nav-item a.dd-menu::before {
         top: 18px;
         right: 0;
         -webkit-transform: rotate(180deg);

@@ -365,7 +365,7 @@
                 <!-- Free Shipping -->
                 <li>
                     <div class="media-icon">
-                        <i class="lni lni-delivery"></i>
+                        <i class="bx bx-mail-send"></i>
                     </div>
                     <div class="media-body">
                         <h5>Free Shipping</h5>
@@ -375,7 +375,7 @@
                 <!-- Money Return -->
                 <li>
                     <div class="media-icon">
-                        <i class="lni lni-support"></i>
+                        <i class="bx bx-support"></i>
                     </div>
                     <div class="media-body">
                         <h5>24/7 Support.</h5>
@@ -385,7 +385,7 @@
                 <!-- Support 24/7 -->
                 <li>
                     <div class="media-icon">
-                        <i class="lni lni-credit-cards"></i>
+                        <i class="bx bx-credit-card"></i>
                     </div>
                     <div class="media-body">
                         <h5>Online Payment.</h5>
@@ -395,7 +395,7 @@
                 <!-- Safe Payment -->
                 <li>
                     <div class="media-icon">
-                        <i class="lni lni-reload"></i>
+                        <i class="bx bx-refresh"></i>
                     </div>
                     <div class="media-body">
                         <h5>Easy Return.</h5>
@@ -420,7 +420,7 @@
             items: 1,
             nav: false,
             controls: true,
-            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+            controlsText: ['<i class="bx bx-chevron-left"></i>', '<i class="bx bx-chevron-right"></i>'],
         });
         tns({
             container: '.brands-logo-carousel',

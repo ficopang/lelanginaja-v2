@@ -52,7 +52,7 @@
                                                                 class="d-flex align-items-center bg-light p-1"
                                                                 style="{{ $user->id == $list->id ? 'background-color: #BCC1CA !important;' : '' }}">
                                                                 <div class="flex-shrink-0 fs-4 m-2">
-                                                                    <i class="lni lni-user"></i>
+                                                                    <i class="bx bx-user"></i>
                                                                 </div>
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h3>{{ $list->first_name }}
@@ -85,7 +85,7 @@
                                                             src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
                                                             alt="image title"></span>
                                                     <div class="flex-shrink-0 fs-4 m-2">
-                                                        <i class="lni lni-user"></i>
+                                                        <i class="bx bx-user"></i>
                                                     </div>
                                                     <div class="flex-grow-1 ms-3">
                                                         <h3>

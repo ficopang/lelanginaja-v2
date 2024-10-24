@@ -21,7 +21,7 @@
                             <div class="single-info-head">
                                 <!-- Start Single Info -->
                                 <div class="single-info">
-                                    <i class="lni lni-map"></i>
+                                    <i class="bx bx-map"></i>
                                     <h3>Address</h3>
                                     <ul>
                                         <li>44 Shirley Ave. West Chicago,<br> IL 60185, USA.</li>
@@ -30,7 +30,7 @@
                                 <!-- End Single Info -->
                                 <!-- Start Single Info -->
                                 <div class="single-info">
-                                    <i class="lni lni-phone"></i>
+                                    <i class="bx bx-phone"></i>
                                     <h3>Call us on</h3>
                                     <ul>
                                         <li><a href="tel:+18005554400">+1 800 555 44 00 (Toll free)</a></li>
@@ -40,7 +40,7 @@
                                 <!-- End Single Info -->
                                 <!-- Start Single Info -->
                                 <div class="single-info">
-                                    <i class="lni lni-envelope"></i>
+                                    <i class="bx bx-envelope"></i>
                                     <h3>Mail at</h3>
                                     <ul>
                                         <li><a href="mailto:support@lelanginaja.com">support@lelanginaja.com</a>

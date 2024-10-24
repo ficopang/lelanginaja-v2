@@ -26,10 +26,10 @@
                         <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
                             <li class="nav-item"> <a class="nav-link active" id="v-pills-add-product-tab"
                                     href="#add-product" data-bs-toggle="pill" role="tab" aria-controls="add-product"
-                                    aria-selected="true"><i class="lni lni-plus"></i></a></li>
+                                    aria-selected="true"><i class="bx bx-plus"></i></a></li>
                             <li class="nav-item"> <a class="nav-link" id="v-pills-view-product-tab" href="#view-products"
                                     data-bs-toggle="pill" role="tab" aria-controls="v-pills-view-product"
-                                    aria-selected="true"><i class="lni lni-layers"></i></a></li>
+                                    aria-selected="true"><i class="bx bxl-layer"></i></a></li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -169,25 +169,25 @@
 
                                                 {{-- <div class="col-lg-3 col-md-3 col-12 align-right">
                                                     <ul class="action-btn">
-                                                        <li><a href="javascript:void(0)"><i class="lni lni-pencil"></i></a></li>
-                                                        <li><a href="javascript:void(0)"><i class="lni lni-trash-can"></i></a></li>
+                                                        <li><a href="javascript:void(0)"><i class="bx bx-pencil"></i></a></li>
+                                                        <li><a href="javascript:void(0)"><i class="bx bx-trash-can"></i></a></li>
                                                     </ul>
                                                 </div> --}}
 
                                                 <div class="col-lg-3 col-md-3 col-12 align-right">
                                                     <ul class="action-btn">
-                                                        {{-- <li><a href="{{ route('products.edit', $product->id) }}"><i class="lni lni-pencil"></i></a></li> --}}
+                                                        {{-- <li><a href="{{ route('products.edit', $product->id) }}"><i class="bx bx-pencil"></i></a></li> --}}
 
                                                         <li class="border rounded-circle shadow-sm"><a
                                                                 href="{{ route('products.edit', $product->id) }}"
-                                                                class="text-primary"><i class="lni lni-pencil"></i></a>
+                                                                class="text-primary"><i class="bx bx-pencil"></i></a>
                                                         </li>
 
                                                         <li class="border rounded-circle shadow-sm">
                                                             <a href="{{ route('products.destroy', $product->id) }}"
                                                                 class="btn p-0 border-0 text-danger"
                                                                 data-confirm-delete="true"><i
-                                                                    class="lni lni-trash-can"></i></a>
+                                                                    class="bx bx-trash-can"></i></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -219,13 +219,13 @@
                                             @if ($products->onFirstPage())
                                                 <!-- No previous page available -->
                                                 <li class="disabled">
-                                                    <span><i class="lni lni-chevron-left"></i></span>
+                                                    <span><i class="bx bx-chevron-left"></i></span>
                                                 </li>
                                             @else
                                                 <!-- Previous page available -->
                                                 <li>
                                                     <a href="{{ $products->previousPageUrl() }}">
-                                                        <i class="lni lni-chevron-left"></i>
+                                                        <i class="bx bx-chevron-left"></i>
                                                     </a>
                                                 </li>
                                             @endif
@@ -240,13 +240,13 @@
                                                 <!-- Next page available -->
                                                 <li>
                                                     <a href="{{ $products->nextPageUrl() }}">
-                                                        <i class="lni lni-chevron-right"></i>
+                                                        <i class="bx bx-chevron-right"></i>
                                                     </a>
                                                 </li>
                                             @else
                                                 <!-- No next page available -->
                                                 <li class="disabled">
-                                                    <span><i class="lni lni-chevron-right"></i></span>
+                                                    <span><i class="bx bx-chevron-right"></i></span>
                                                 </li>
                                             @endif
                                         </ul>

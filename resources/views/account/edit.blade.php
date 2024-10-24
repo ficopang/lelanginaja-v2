@@ -27,13 +27,13 @@
                         <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
                             <li class="nav-item"> <a class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                    aria-selected="true"><i class="lni lni-user"></i></a></li>
+                                    aria-selected="true"><i class="bx bx-user"></i></a></li>
                             <li class="nav-item"> <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     href="#v-pills-security" role="tab" aria-controls="v-pills-security"
-                                    aria-selected="true"><i class="lni lni-protection"></i></a></li>
+                                    aria-selected="true"><i class="bx bx-shield"></i></a></li>
                             <li class="nav-item"> <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     href="#v-pills-account" role="tab" aria-controls="v-pills-account"
-                                    aria-selected="true"><i class="lni lni-cog"></i></a></li>
+                                    aria-selected="true"><i class="bx bx-cog"></i></a></li>
                         </ul>
                     </div>
                     <div class="card-body">

@@ -32,12 +32,12 @@
                                                     <div class="row">
                                                         <div class="col-md-6 form-input form">
                                                             <label for="name">Receiver's name</label>
-                                                            <input type="text" placeholder="Jane Doe" name="name"
+                                                            <input type="text" class="form-control" placeholder="Jane Doe" name="name"
                                                                 id="name">
                                                         </div>
                                                         <div class="col-md-6 form-input form">
                                                             <label for="phone_number">Phone Number</label>
-                                                            <input type="text" placeholder="081296595207"
+                                                            <input type="text" class="form-control" placeholder="081296595207"
                                                                 id="phone_number" name="phone_number">
                                                         </div>
                                                     </div>
@@ -47,8 +47,8 @@
                                                 <div class="single-form form-default">
                                                     <div class="form-input form">
                                                         <label for="addres">Address</label>
-                                                        <input type="text" placeholder="Mawar Raya Street No. 123"
-                                                            id="address" name="address">
+                                                        <textarea class="form-control" placeholder="Mawar Raya Street No. 123"
+                                                            id="address" name="address" rows="3"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,7 +56,7 @@
                                                 <div class="single-form form-default">
                                                     <div class="form-input form">
                                                         <label for="city">City</label>
-                                                        <input type="text" placeholder="Tangerang" id="city"
+                                                        <input type="text" class="form-control" placeholder="Tangerang" id="city"
                                                             name="city">
                                                     </div>
                                                 </div>
@@ -65,7 +65,7 @@
                                                 <div class="single-form form-default">
                                                     <div class="form-input form">
                                                         <label for="postal_code">Post Code</label>
-                                                        <input type="text" placeholder="15138" id="postal_code"
+                                                        <input type="text" class="form-control" placeholder="15138" id="postal_code"
                                                             name="postal_code">
                                                     </div>
                                                 </div>
@@ -74,7 +74,7 @@
                                                 <div class="single-form form-default">
                                                     <div class="form-input form">
                                                         <label for="province">Province</label>
-                                                        <input type="text" placeholder="Banten" id="province"
+                                                        <input type="text" class="form-control" placeholder="Banten" id="province"
                                                             name="province">
                                                     </div>
                                                 </div>
@@ -83,7 +83,7 @@
                                                 <div class="single-form form-default">
                                                     <div class="form-input form">
                                                         <label for="country">Country</label>
-                                                        <input type="text" placeholder="Indonesia" id="country"
+                                                        <input type="text" class="form-control" placeholder="Indonesia" id="country"
                                                             name="country">
                                                     </div>
                                                 </div>
