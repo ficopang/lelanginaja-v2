@@ -1000,11 +1000,11 @@ ol {
 }
 
 .breadcrumbs .breadcrumb-nav li:after {
-    content: "\ea62";
-    font-family: lineIcons;
+    content: "\ed3b";
+    font-family: boxicons;
     font-size: 12px;
     position: absolute;
-    top: 3px;
+    top: 2px;
     right: -7px;
 }
 
@@ -1622,16 +1622,17 @@ ol {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
 
 /* Adjust padding when there is a container after Start Header Bottom */
-.header-middle:has(+ .header-footer) {
+/* .header-middle:has(+ .header-footer) {
     padding-bottom: 5px; /* Adjust as needed */
-}
+} */
 
 .header-footer {
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
@@ -2396,7 +2397,7 @@ ol {
     margin-right: 12px;
     font-size: 20px;
     position: relative;
-    top: 2px;
+    top: -2px;
 }
 
 .header .mega-category-menu:hover .sub-category {
@@ -4152,8 +4153,8 @@ ol {
 }
 
 .accordion-button:not(.collapsed) i::before {
-    content: "\eb2e";
-    font-family: lineIcons;
+    content: "\eb8b";
+    font-family: boxicons;
 }
 
 .accordion-button::after {
@@ -5417,8 +5418,8 @@ blockquote span {
     font-size: 10px;
     line-height: 1.2;
     background-color: #0167f3;
-    font-family: "Lineicons";
-    content: "\ea5b";
+    font-family: "boxicons";
+    content: "\ea41";
     padding-left: 0px;
     padding-top: 3px;
     border-radius: 50%;
@@ -6746,8 +6747,8 @@ blockquote span {
     right: 16px;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    font-family: "Lineicons";
-    content: "\ea5e";
+    font-family: "boxicons";
+    content: "\ed35";
     font-size: 13px;
     color: #7d7d7d;
     -webkit-transition: all 0.3s linear;
@@ -6878,8 +6879,8 @@ blockquote span {
     font-size: 10px;
     line-height: 1.2;
     background-color: #0167f3;
-    font-family: "Lineicons";
-    content: "\ea5b";
+    font-family: "boxicons";
+    content: "\ea41";
     padding-left: 4px;
     padding-top: 3px;
     border-radius: 4px;

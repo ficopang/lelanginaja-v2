@@ -7,7 +7,7 @@
     <div class="product-image p-4">
         <!-- Sale badge-->
         <div class="badge {{ $product->auction_type === 'close' ? 'bg-secondary' : 'bg-success' }} text-white position-absolute text-capitalize"
-            style="bottom: 0.5rem; right: 0.5rem; z-index:1000;">
+            style="bottom: 0.5rem; right: 0.5rem; z-index:100;">
             {{ $product->auction_type }} bid
         </div>
         <img style="height: 200px; width: 100%; object-fit: cover;"

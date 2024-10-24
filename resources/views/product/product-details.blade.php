@@ -142,12 +142,13 @@
                                 <div class="d-flex flex-column gap-1">
                                     <p class="fw-bold">Current Bid</p>
                                     <div class="d-flex align-items-center gap-2">
-                                        <div class="avatar"><span
-                                                class="avatar-initial rounded-circle {{ $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'bg-primary' : 'bg-secondary' }}">
-                                                {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name[0] : '' }}</span>
+                                        <div class="avatar">
+                                            <span
+                                            class="avatar-initial rounded-circle {{ $product->bids()->latest('created_at')->first() && $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'bg-primary' : 'bg-secondary' }}">
+                                            {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name[0] : '?' }}</span>
                                         </div>
-                                        <span class="d-inline text-primary fw-bold" id="last-bidder">
-                                            {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name . ' ' . $product->bids()->latest('created_at')->first()->user->last_name : '' }}
+                                        <span class="d-inline {{ $product->bids()->latest('created_at')->first() && $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'text-primary' : 'text-secondary' }} fw-bold" id="last-bidder">
+                                            {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name . ' ' . $product->bids()->latest('created_at')->first()->user->last_name : 'No bids yet' }}
                                         </span>
                                     </div>
                                 </div>

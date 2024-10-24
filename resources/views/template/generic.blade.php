@@ -194,7 +194,7 @@
     <!-- End Header Middle -->
     <!-- Start Header Bottom -->
     @auth
-        <div class="header-footer">
+        <div class="header-footer p-1">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-8 col-md-6 col-12">
