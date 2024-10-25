@@ -39,6 +39,148 @@ class Ecommerce extends Base
         "Breguet Double Tourbillon Rose Gold Watch", "Franck Muller Vanguard Watch", "Rolex Sky Dweller Sundust Dial 18kt Watch", "IWC Men's Portuguese Minute Repeater Gold Watch", "Rolex Day-Date 40 President Watch"
     ];
 
+    protected static $guitars = [
+        "Fender Stratocaster",
+        "Gibson Les Paul",
+        "PRS Custom 24",
+        "Ibanez RG",
+        "Taylor 814ce",
+        "Martin D-28",
+        "Yamaha Pacifica",
+        "Epiphone Casino",
+        "Gretsch Country Gentleman",
+        "Suhr Standard"
+    ];
+
+    protected static $paintings = [
+        "The Starry Night",
+        "The Persistence of Memory",
+        "The Scream",
+        "The Night Watch",
+        "Starry Night Over the Rhône",
+        "Girl with a Pearl Earring",
+        "The Great Wave off Kanagawa",
+        "Whistler's Mother"
+    ];
+
+    protected static $pianos = [
+        "Steinway & Sons Model D",
+        "Yamaha CFX",
+        "Bosendorfer Imperial",
+        "Bechstein Model B",
+        "Shigeru Kawai SK-EX",
+        "Roland RD-2000",
+        "Kawai VPC1",
+        "Nord Stage 3",
+        "Casio PX-870",
+        "Roland FP-90"
+    ];
+
+    protected static $cars = [
+        "Toyota Corolla",
+        "Honda Civic",
+        "Ford Mustang",
+        "Chevrolet Camaro",
+        "BMW 3 Series",
+        "Mercedes-Benz C-Class",
+        "Audi A4",
+        "Volkswagen Golf",
+        "Nissan Altima",
+        "Hyundai Sonata"
+    ];
+
+    protected static $motorcycles = [
+        "Harley-Davidson Street Glide",
+        "Yamaha YZF-R1",
+        "Ducati Panigale V4",
+        "Honda CBR1000RR-R Fireblade SP",
+        "Suzuki GSX-R1000",
+        "BMW S1000RR",
+        "Triumph Speed Triple RS",
+        "KTM 1290 Super Duke R",
+        "Aprilia RSV4 RR",
+        "MV Agusta F4 RC"
+    ];
+
+    protected static $jeans = [
+        "Levi's 501",
+        "Wrangler 13MWZ",
+        "Lee Riders",
+        "Levi's 569",
+        "Levi's 527",
+        "True Religion Joey",
+        "Guess Skinny Jeans",
+        "Calvin Klein Jeans",
+        "7 For All Mankind Slimmy",
+        "Ralph Lauren Straight Fit"
+    ];
+
+    protected static $shirts = [
+        "Hanes Beefy-T",
+        "Gildan Ultra Cotton",
+        "American Apparel Fine Jersey",
+        "Next Level 3600",
+        "Anvil 980",
+        "Bella + Canvas 3001",
+        "Port & Company Core 50",
+        "Jerzees NuBlend Pullover Hoodie",
+        "Fruit of the Loom Valueweight",
+        "Russell Athletic Eco-Spun Fleece"
+    ];
+
+    protected static $shoes = [
+        "Nike Air Max 270",
+        "Adidas Ultraboost",
+        "Converse Chuck Taylor All Star",
+        "Vans Old Skool",
+        "New Balance 990v5",
+        "Reebok Club C 85",
+        "Puma Suede Classic",
+        "Asics Gel-Kayano 26",
+        "Saucony Jazz Original",
+        "Timberland 6-Inch Premium Boot"
+    ];
+
+    protected static $novels = [
+        "Pride and Prejudice",
+        "1984",
+        "The Great Gatsby",
+        "One Hundred Years of Solitude",
+        "The Catcher in the Rye",
+        "The Lord of the Rings",
+        "The Hobbit",
+        "The Grapes of Wrath",
+        "The Little Prince",
+        "And Then There Were None",
+        "The Hitchhiker's Guide to the Galaxy",
+        "The Name of the Rose",
+        "The Da Vinci Code",
+        "The Alchemist",
+        "The Kite Runner",
+        "The God of Small Things",
+        "Life of Pi",
+        "The Book Thief",
+        "The Secret Garden",
+        "The Handmaid's Tale",
+        "The Hunger Games",
+        "Gone Girl",
+        "The Girl with the Dragon Tattoo",
+        "The Girl on the Train",
+        "The Silent Patient",
+        "Where the Crawdads Sing",
+        "Little Fires Everywhere",
+        "The Night Circus",
+    ];
+
+    protected static $lessons = [
+        "Algorithm and Programming",
+        "Java for Dummies",
+        "Data Structure",
+        "Program Design Methods",
+        "Compilation Technique",
+        "Operating Systems",
+    ];
+
     /**
      * A random Televisions.
      * @return string
@@ -109,5 +251,95 @@ class Ecommerce extends Base
     public function jewelry()
     {
         return static::randomElement(static::$jewelry);
+    }
+
+    /**
+     * A random guitars Name.
+     * @return string
+     */
+    public function guitars()
+    {
+        return static::randomElement(static::$guitars);
+    }
+
+    /**
+     * A random paintings Name.
+     * @return string
+     */
+    public function paintings()
+    {
+        return static::randomElement(static::$paintings);
+    }
+
+    /**
+     * A random pianos Name.
+     * @return string
+     */
+    public function pianos()
+    {
+        return static::randomElement(static::$pianos);
+    }
+
+    /**
+     * A random cars Name.
+     * @return string
+     */
+    public function cars()
+    {
+        return static::randomElement(static::$cars);
+    }
+
+    /**
+     * A random motorcycles Name.
+     * @return string
+     */
+    public function motorcycles()
+    {
+        return static::randomElement(static::$motorcycles);
+    }
+
+    /**
+     * A random jeans Name.
+     * @return string
+     */
+    public function jeans()
+    {
+        return static::randomElement(static::$jeans);
+    }
+
+    /**
+     * A random shirts Name.
+     * @return string
+     */
+    public function shirts()
+    {
+        return static::randomElement(static::$shirts);
+    }
+
+    /**
+     * A random shoes Name.
+     * @return string
+     */
+    public function shoes()
+    {
+        return static::randomElement(static::$shoes);
+    }
+
+    /**
+     * A random novel Name.
+     * @return string
+     */
+    public function novel()
+    {
+        return static::randomElement(static::$novels);
+    }
+
+    /**
+     * A random lesson Name.
+     * @return string
+     */
+    public function lesson()
+    {
+        return static::randomElement(static::$lessons);
     }
 }
