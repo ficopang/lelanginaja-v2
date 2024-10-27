@@ -156,7 +156,8 @@
                                                         <div class="content">
                                                             <h3 class="title"><a
                                                                     href="javascript:void(0)">{{ $product->name }}</a></h3>
-                                                            <span class="price">Rp{{ $product->starting_price }}</span>
+                                                            <span
+                                                                class="price">{{ formatRupiah($product->starting_price) }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,13 +167,6 @@
                                                 <div class="col-lg-2 col-md-2 col-12">
                                                     <p>{{ $product->end_time }}</p>
                                                 </div>
-
-                                                {{-- <div class="col-lg-3 col-md-3 col-12 align-right">
-                                                    <ul class="action-btn">
-                                                        <li><a href="javascript:void(0)"><i class="bx bx-pencil"></i></a></li>
-                                                        <li><a href="javascript:void(0)"><i class="bx bx-trash-can"></i></a></li>
-                                                    </ul>
-                                                </div> --}}
 
                                                 <div class="col-lg-3 col-md-3 col-12 align-right">
                                                     <ul class="action-btn">
@@ -186,8 +180,7 @@
                                                         <li class="border rounded-circle shadow-sm">
                                                             <a href="{{ route('products.destroy', $product->id) }}"
                                                                 class="btn p-0 border-0 text-danger"
-                                                                data-confirm-delete="true"><i
-                                                                    class="bx bx-trash-can"></i></a>
+                                                                data-confirm-delete="true"><i class="bx bx-trash"></i></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -196,61 +189,54 @@
                                         </div>
                                         <div class="collapse" id="product-details-{{ $product->id }}">
                                             <div class="card card-body">
-                                                <p>Product Details:</p>
+                                                <p class="fw-bold">Product Details:</p>
                                                 <ul>
-                                                    <li>Name: {{ $product->name }}</li>
                                                     <li>Description: {{ $product->description }}</li>
-                                                    <li>Starting Price: Rp.{{ $product->starting_price }}</li>
-                                                    <li>Min Bid Increment: Rp.{{ $product->min_bid_increment }}</li>
+                                                    <li>Starting Price: {{ formatRupiah($product->starting_price) }}</li>
+                                                    <li>Min Bid Increment: {{ formatRupiah($product->min_bid_increment) }}
+                                                    </li>
                                                     <li>Min User: {{ $product->min_bid_users }}</li>
-                                                    <li>Image: <img src="{{ asset('storage' . $product->image_url) }}"
-                                                            alt="{{ $product->name }}" width="100"></li>
                                                     <li>Reset Time: {{ $product->reset_time }} second(s)</li>
                                                     <li>Start Time: {{ $product->start_time }}</li>
                                                     <li>End Time: {{ $product->end_time }}</li>
-
+                                                    <li>Status: {{ $product->end_time > now() ? 'On Going' : 'Ended' }}
+                                                    </li>
+                                                    @if ($product->end_time < now())
+                                                        @if ($product->bids->count() > 0)
+                                                            @if ($product->auction_type == 'close')
+                                                                <li>Winner:
+                                                                    {{ $product->getHighestBidUser()->first_name . ' ' . $product->getHighestBidUser()->last_name }}
+                                                                    ({{ formatRupiah($product->getTotalBidAmountUser($product->getHighestBidUser()->id)) }})
+                                                                </li>
+                                                            @else
+                                                                <li>Winner:
+                                                                    {{ $product->bids->last()->user->first_name . ' ' . $product->bids->last()->user->last_name }}
+                                                                    ({{ formatRupiah($product->getTotalBidAmountAttribute()) }})
+                                                                </li>
+                                                            @endif
+                                                            @if ($product->transaction && $product->transaction->shipment)
+                                                                <li><br><br>
+                                                                    Address:<br>
+                                                                    To: {{ $product->transaction->shipment->name }}
+                                                                    ({{ $product->transaction->shipment->phone_number }})
+                                                                    <br>
+                                                                    {{ $product->transaction->shipment->address }},
+                                                                    {{ $product->transaction->shipment->province }},
+                                                                    {{ $product->transaction->shipment->city }},
+                                                                    {{ $product->transaction->shipment->country }},
+                                                                    {{ $product->transaction->shipment->postal_code }}.
+                                                                </li>
+                                                            @endif
+                                                        @endif
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </div>
                                     @endforeach
 
-                                    <div class="pagination left">
-                                        <ul class="pagination-list">
-                                            @if ($products->onFirstPage())
-                                                <!-- No previous page available -->
-                                                <li class="disabled">
-                                                    <span><i class="bx bx-chevron-left"></i></span>
-                                                </li>
-                                            @else
-                                                <!-- Previous page available -->
-                                                <li>
-                                                    <a href="{{ $products->previousPageUrl() }}">
-                                                        <i class="bx bx-chevron-left"></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-
-                                            @foreach ($products->links()->elements[0] as $page => $url)
-                                                <li class="{{ $products->currentPage() == $page ? 'active' : '' }}">
-                                                    <a href="{{ $url }}">{{ $page }}</a>
-                                                </li>
-                                            @endforeach
-
-                                            @if ($products->hasMorePages())
-                                                <!-- Next page available -->
-                                                <li>
-                                                    <a href="{{ $products->nextPageUrl() }}">
-                                                        <i class="bx bx-chevron-right"></i>
-                                                    </a>
-                                                </li>
-                                            @else
-                                                <!-- No next page available -->
-                                                <li class="disabled">
-                                                    <span><i class="bx bx-chevron-right"></i></span>
-                                                </li>
-                                            @endif
-                                        </ul>
-                                    </div>
+                                    <!-- Pagination -->
+                                    <x-pagination :iterables=$products />
+                                    <!--/ End Pagination -->
 
 
 

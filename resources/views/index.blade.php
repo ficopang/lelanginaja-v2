@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                     <div class="images">
-                                        <img src="{{ $cr->images()->first() ? asset('storage' . $cr->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                        <img src="{{ asset('storage/' . strtolower($cr->category->name) . 's/cover.webp') }}"
                                             alt="{{ $cr->name }}">
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                     <h3>{{ formatRupiah($smallBanner->total_bid_amount) }}</h3>
                                 </div>
                                 <div class="images">
-                                    <img src="{{ $smallBanner->images()->first() ? asset('storage' . $smallBanner->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                    <img src="{{ asset('storage/' . strtolower($smallBanner->category->name) . 's/cover.webp') }}"
                                         alt="{{ $smallBanner->name }}">
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
                                 <li><a href="{{ route('products.category', ['id' => $cat->id]) }}">View All</a></li>
                             </ul>
                             <div class="images">
-                                <img src="{{ asset('storage' . $cat->products()->with('images')->first()->images()->first()->image_url) }}"
+                                <img src="{{ asset('storage/' . strtolower($cat->name) . 's/cover.webp') }}"
                                     alt="{{ $cat->name }}" />
                             </div>
                         </div>
@@ -235,7 +235,7 @@
                             </div>
                         </div>
                         <div class="images">
-                            <img src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                            <img src="{{ asset('storage/' . strtolower($banner->category->name) . 's/cover.webp') }}"
                                 alt="{{ $product->name }}">
                         </div>
                     </div>
@@ -334,25 +334,6 @@
                     @endforeach
                     <!-- End Single List -->
                 </div>
-                {{-- <div class="col-lg-4 col-md-4 col-12">
-                    <h4 class="list-title">Top Rated</h4>
-                    <!-- Start Single List -->
-                    @foreach ($topRated as $tr)
-                        <div class="single-list">
-                            <div class="list-image">
-                                <a href="/product/{{ $tr->id }}"><img
-                                        src="{{ asset('storage' . $tr->image_url) }}" alt="#" /></a>
-                            </div>
-                            <div class="list-info">
-                                <h3>
-                                    <a href="/product/{{ $tr->id }}">{{ $tr->name }}</a>
-                                </h3>
-                                <span>{{ formatRupiah($tr->total_bid_amount); }}</span>
-                            </div>
-                        </div>
-                        <!-- End Single List -->
-                    @endforeach
-                </div> --}}
             </div>
         </div>
     </section>

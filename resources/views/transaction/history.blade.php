@@ -10,6 +10,20 @@
                 Transaction History
             </div>
             <div class="card-body">
+                {{-- menampilkan error validasi --}}
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ $errors->first() }}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="my-items">
                     <div class="item-list-title">
                         <div class="row align-items-center">
@@ -64,9 +78,12 @@
                                                     class="bx bxs-conversation"></i></a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('chat.index', $tr->product->user_id) }}"
-                                                class="btn btn-sm shadow rounded-circle btn-outline-dark d-flex justify-content-center align-items-center icon-circle text-success"><i
-                                                    class="bx bxs-check-circle"></i></a>
+                                            <form action="{{ route('transaction.finish', $tr->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="btn btn-sm shadow rounded-circle btn-outline-dark d-flex justify-content-center align-items-center icon-circle text-success"><i
+                                                        class="bx bxs-check-circle"></i></button>
+                                            </form>
                                         </li>
                                         <li>
                                             <a href="{{ route('transaction.report.store', $tr->id) }}"
@@ -92,16 +109,6 @@
                             </div>
                         </div>
                     @endforeach
-                    {{-- <div class="pagination left">
-                        <ul class="pagination-list">
-                            <li><a href="javascript:void(0)">1</a></li>
-                            <li class="active"><a href="javascript:void(0)">2</a></li>
-                            <li><a href="javascript:void(0)">3</a></li>
-                            <li><a href="javascript:void(0)">4</a></li>
-                            <li><a href="javascript:void(0)"><i class="bx bx-chevron-right"></i></a>
-                            </li>
-                        </ul>
-                    </div> --}}
                 </div>
             </div>
         </div>

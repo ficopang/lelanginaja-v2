@@ -3351,7 +3351,7 @@ ol {
 
 .featured-categories .single-category img {
     position: absolute;
-    right: 0;
+    right: 4%;
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);

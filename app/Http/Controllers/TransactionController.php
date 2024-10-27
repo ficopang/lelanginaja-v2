@@ -57,20 +57,13 @@ class TransactionController extends Controller
         $status = "shipped";
 
         $this->validate($request, [
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'name' => 'required',
             'phone_number' => 'required',
-            'shipping' => 'required',
             'address' => 'required|min:5|max:100',
             'city' => 'required',
             'province' => 'required',
             'country' => 'required',
             'postal_code' => 'required|integer|between:10000,99999',
-            'card_holder_name' => 'required',
-            'card_number' => 'required|max:16|min:16',
-            'exp_month' => 'required|integer|between:1,12',
-            'exp_year' => 'required|integer|between:1,9999',
-            'cvv' => 'required|integer|between:100,999'
         ]);
 
         foreach ($wonProducts as $product) {
@@ -78,25 +71,37 @@ class TransactionController extends Controller
             $transaction->buyer_id = $user->id;
             $transaction->seller_id = $product->user_id;
             $transaction->product_id = $product->id;
-            $transaction->final_price = $product->getTotalBidAmount();
+            $transaction->final_price = $product->getTotalBidAmountAttribute();
             $transaction->status = "pending";
             $transaction->save();
 
             $shippingAddress = new Shipment();
             $shippingAddress->transaction_id = $transaction->id;
-            $shippingAddress->firstname = $request->firstname;
-            $shippingAddress->lastname = $request->lastname;
+            $shippingAddress->name = $request->name;
             $shippingAddress->phone_number = $request->phone_number;
-            $shippingAddress->courier = "JNE";
             $shippingAddress->address = $request->address;
             $shippingAddress->city = $request->city;
             $shippingAddress->province = $request->province;
             $shippingAddress->country = $request->country;
             $shippingAddress->postal_code = $request->postal_code;
-            $shippingAddress->cost = $cost;
             $shippingAddress->status = $status;
             $shippingAddress->save();
         }
         return redirect()->route('transaction.index');
+    }
+
+    public function finish(Request $request)
+    {
+        $tr = Transaction::find($request->transaction);
+
+        if (!$tr) {
+            return back()->with('error', 'Transaction not found');
+        }
+
+        $tr->status = "completed";
+        $tr->seller()->increment('balance', $tr->final_price);
+        $tr->save();
+
+        return back()->with('success', 'Transaction completed and balance added to seller');
     }
 }

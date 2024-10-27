@@ -4,7 +4,7 @@
         <a class="fs-6 d-inline-block text-white text-truncate" style="max-width: 80%;"
             href="/product/{{ $product->id }}">{{ $product->name }}</a>
     </div>
-    <div class="product-image p-4">
+    <div class="product-image">
         <!-- Sale badge-->
         <div class="badge {{ $product->auction_type === 'close' ? 'bg-secondary' : 'bg-success' }} text-white position-absolute text-capitalize"
             style="bottom: 0.5rem; right: 0.5rem; z-index:100;">

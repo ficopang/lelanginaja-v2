@@ -15,18 +15,18 @@ class ProductImageSeeder extends Seeder
      */
     public function run(): void
     {
-        $products = Product::all();
+        // $products = Product::all();
 
-        foreach ($products as $product) {
-            $category = str_replace(' ', '_', strtolower($product->category->name));
-            $imagePath = "public/{$category}s";
-            $imageFiles = Storage::files($imagePath);
-            $imageUrl = str_replace('/storage', '', Storage::url(fake()->randomElement($imageFiles)));
+        // foreach ($products as $product) {
+        //     $category = str_replace(' ', '_', strtolower($product->category->name));
+        //     $imagePath = "public/{$category}s";
+        //     $imageFiles = Storage::files($imagePath);
+        //     $imageUrl = str_replace('/storage', '', Storage::url(fake()->randomElement($imageFiles)));
 
-            DB::table('product_images')->insert([
-                'product_id' => $product->id,
-                'image_url' => $imageUrl,
-            ]);
-        }
+        //     DB::table('product_images')->insert([
+        //         'product_id' => $product->id,
+        //         'image_url' => $imageUrl,
+        //     ]);
+        // }
     }
 }

@@ -1,13 +1,17 @@
 <!-- Pagination -->
 <div class="pagination left text-primary">
     <ul class="pagination-list">
-        @if ($iterables->onFirstPage())
-            <!-- No previous page available -->
-            <li class="disabled">
-                <span><i class="bx bx-chevron-left"></i></span>
+        {{-- First page link --}}
+        @if (!$iterables->onFirstPage())
+            <li>
+                <a href="{{ $iterables->url(1) . '&' . http_build_query(request()->except('page')) }}">
+                    <i class="bx bx-chevrons-left"></i>
+                </a>
             </li>
-        @else
-            <!-- Previous page available -->
+        @endif
+
+        {{-- Previous page link --}}
+        @if (!$iterables->onFirstPage())
             <li>
                 <a href="{{ $iterables->previousPageUrl() . '&' . http_build_query(request()->except('page')) }}">
                     <i class="bx bx-chevron-left"></i>
@@ -15,26 +19,37 @@
             </li>
         @endif
 
-        @foreach ($iterables->links()->elements[0] as $page => $url)
-            <li class="{{ $iterables->currentPage() == $page ? 'active' : '' }}">
-                <a href="{{ $url . '&' . http_build_query(request()->except('page')) }}">{{ $page }}</a>
-            </li>
-        @endforeach
+        {{-- Page number links --}}
+        @php
+            $start = max(1, $iterables->currentPage() - 4);
+            $end = min($iterables->lastPage(), $iterables->currentPage() + 4);
+        @endphp
 
+        @for ($page = $start; $page <= $end; $page++)
+            <li class="{{ $iterables->currentPage() == $page ? 'active' : '' }}">
+                <a
+                    href="{{ $iterables->url($page) . '&' . http_build_query(request()->except('page')) }}">{{ $page }}</a>
+            </li>
+        @endfor
+
+        {{-- Next page link --}}
         @if ($iterables->hasMorePages())
-            <!-- Next page available -->
             <li>
                 <a href="{{ $iterables->nextPageUrl() . '&' . http_build_query(request()->except('page')) }}">
                     <i class="bx bx-chevron-right"></i>
                 </a>
             </li>
-        @else
-            <!-- No next page available -->
-            <li class="disabled">
-                <span><i class="bx bx-chevron-right"></i></span>
+        @endif
+
+        {{-- Last page link --}}
+        @if ($iterables->hasMorePages())
+            <li>
+                <a
+                    href="{{ $iterables->url($iterables->lastPage()) . '&' . http_build_query(request()->except('page')) }}">
+                    <i class="bx bx-chevrons-right"></i>
+                </a>
             </li>
         @endif
     </ul>
 </div>
-
 <!--/ End Pagination -->

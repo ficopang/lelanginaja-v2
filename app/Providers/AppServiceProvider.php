@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,19 +37,29 @@ class AppServiceProvider extends ServiceProvider
                 ->whereDoesntHave('transaction')
                 ->where('end_time', '<', Carbon::now()->addHours(7))
                 ->where(function ($query) use ($userId) {
-                    $query->where(function ($subQuery) use ($userId) {
-                        $subQuery->where('auction_type', 'close')
-                            ->whereRaw('products.id IN (SELECT b.product_id FROM bids b JOIN products p ON b.product_id = p.id GROUP BY b.user_id, b.product_id ORDER BY SUM(b.bid_amount) + p.starting_price DESC)'); 
-                    })->orWhere(function ($subQuery) use ($userId) {
-                        $subQuery->where('auction_type', 'open')
-                            ->whereHas('bids', function ($bidQuery) use ($userId) {
-                                $bidQuery->where('user_id', $userId)
-                                    ->orderBy('created_at', 'desc')
-                                    ->limit(1); 
+                    $query->where(function ($q) use ($userId) {
+                        // Condition for closed auction type: check if the user has the highest bid
+                        $q->where('auction_type', 'close')
+                            ->whereHas('bids', function ($subQuery) use ($userId) {
+                                $subQuery->select(DB::raw('SUM(bid_amount) as total_bid'))
+                                    ->where('user_id', $userId)
+                                    ->groupBy('user_id', 'product_id')
+                                    ->orderBy('total_bid', 'desc')
+                                    ->limit(1);
                             });
-                    });
+                    })
+                        ->orWhere(function ($q) use ($userId) {
+                            // Condition for open auction type: check if the user placed the last bid
+                            $q->where('auction_type', 'open')
+                                ->whereHas('bids', function ($subQuery) use ($userId) {
+                                    $subQuery->where('user_id', $userId)
+                                        ->orderBy('created_at', 'desc')
+                                        ->limit(1); // Last bid by user
+                                });
+                        });
                 })
                 ->get();
+
 
             $totalPrice = $wonProducts->sum(function ($product) {
                 return $product->getTotalBidAmountAttribute();

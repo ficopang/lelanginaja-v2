@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/account/transaction/{transaction}/report', [TransactionReportController::class, 'show'])->name('transaction.report.index');
     Route::post('/account/transaction/{transaction}/report', [TransactionReportController::class, 'store'])->name('transaction.report.store');
+    Route::post('/account/transaction/{transaction}/finish', [TransactionController::class, 'finish'])->name('transaction.finish');
 
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

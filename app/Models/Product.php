@@ -79,7 +79,7 @@ class Product extends Model
             ->first();
 
         // Return the user ID or null if no bids found
-        return $highestBidUser ? $highestBidUser->user_id : null;
+        return $highestBidUser ? User::find($highestBidUser->user_id) : null;
     }
 
     public function undiscountedPrice()

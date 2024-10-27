@@ -133,52 +133,6 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <!-- Pagination -->
-                                        <div class="pagination left">
-                                            <ul class="pagination-list">
-                                                @if ($products->onFirstPage())
-                                                    <!-- No previous page available -->
-                                                    <li class="disabled">
-                                                        <span><i class="bx bx-chevron-left"></i></span>
-                                                    </li>
-                                                @else
-                                                    <!-- Previous page available -->
-                                                    <li>
-                                                        <a
-                                                            href="{{ $products->previousPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="bx bx-chevron-left"></i>
-                                                        </a>
-                                                    </li>
-                                                @endif
-
-                                                @foreach ($products->links()->elements[0] as $page => $url)
-                                                    <li class="{{ $products->currentPage() == $page ? 'active' : '' }}">
-                                                        <a
-                                                            href="{{ $url . '&' . http_build_query(request()->except('page')) }}">{{ $page }}</a>
-                                                    </li>
-                                                @endforeach
-
-                                                @if ($products->hasMorePages())
-                                                    <!-- Next page available -->
-                                                    <li>
-                                                        <a
-                                                            href="{{ $products->nextPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="bx bx-chevron-right"></i>
-                                                        </a>
-                                                    </li>
-                                                @else
-                                                    <!-- No next page available -->
-                                                    <li class="disabled">
-                                                        <span><i class="bx bx-chevron-right"></i></span>
-                                                    </li>
-                                                @endif
-                                            </ul>
-                                        </div>
-                                        <!--/ End Pagination -->
-                                    </div>
-                                </div>
                             </div>
                             <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
                                 <div class="row">
@@ -237,7 +191,8 @@
                                                                         @csrf
                                                                         <button
                                                                             class="d-flex align-items-center justify-content-center gap-1 btn {{ auth()->user()->watchlists->contains('product_id', $product->id)? 'btn-dark text-white': 'btn-outline-dark' }}""><i
-                                                                                class="bx bx-low-vision"></i> Watchlist</button>
+                                                                                class="bx bx-low-vision"></i>
+                                                                            Watchlist</button>
                                                                     </form>
                                                                 @endauth
                                                                 <a href="/product/{{ $product->id }}"
@@ -251,55 +206,12 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <!-- Pagination -->
-                                        <div class="pagination left">
-                                            <ul class="pagination-list">
-                                                @if ($products->onFirstPage())
-                                                    <!-- No previous page available -->
-                                                    <li class="disabled">
-                                                        <span><i class="bx bx-chevron-left"></i></span>
-                                                    </li>
-                                                @else
-                                                    <!-- Previous page available -->
-                                                    <li>
-                                                        <a
-                                                            href="{{ $products->previousPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="bx bx-chevron-left"></i>
-                                                        </a>
-                                                    </li>
-                                                @endif
-
-                                                @foreach ($products->links()->elements[0] as $page => $url)
-                                                    <li class="{{ $products->currentPage() == $page ? 'active' : '' }}">
-                                                        <a
-                                                            href="{{ $url . '&' . http_build_query(request()->except('page')) }}">{{ $page }}</a>
-                                                    </li>
-                                                @endforeach
-
-                                                @if ($products->hasMorePages())
-                                                    <!-- Next page available -->
-                                                    <li>
-                                                        <a
-                                                            href="{{ $products->nextPageUrl() . '&' . http_build_query(request()->except('page')) }}">
-                                                            <i class="bx bx-chevron-right"></i>
-                                                        </a>
-                                                    </li>
-                                                @else
-                                                    <!-- No next page available -->
-                                                    <li class="disabled">
-                                                        <span><i class="bx bx-chevron-right"></i></span>
-                                                    </li>
-                                                @endif
-                                            </ul>
-                                        </div>
-                                        <!--/ End Pagination -->
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Pagination -->
+                    <x-pagination :iterables=$products />
+                    <!--/ End Pagination -->
                 </div>
             </div>
         </div>
@@ -369,6 +281,21 @@
             // Update the URL without reloading the page
             window.location.href = newUrl;
         }
+
+        function removeEmptyUrlParameter(param) {
+            var url = new URL(window.location.href);
+
+            // Check if the parameter exists and if its value is empty
+            if (url.searchParams.has(param) && url.searchParams.get(param) === "") {
+                // Remove the parameter
+                url.searchParams.delete(param);
+                // Update the URL without reloading the page
+                window.history.replaceState({}, document.title, url.toString());
+            }
+        }
+
+        removeEmptyUrlParameter('category_id');
+        removeEmptyUrlParameter('query');
     </script>
     <script>
         // Countdown Timers
