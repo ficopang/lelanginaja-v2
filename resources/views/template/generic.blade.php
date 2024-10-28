@@ -57,8 +57,7 @@
                                         <select id="category_id" name="category_id">
                                             <option value="" selected>All</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    style="text-transform: capitalize;">
+                                                <option value="{{ $category->id }}" style="text-transform: capitalize;">
                                                     {{ $category->name }}</option>
                                             @endforeach
                                         </select>
@@ -297,7 +296,11 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="{{ route('home') }}"><i class="bx bx-home"></i> Home</a></li>
+                        @if (count(Request::segments()) == 2 && !is_numeric(Request::segment(2)))
+                            <li>{{ Request::segment(count(Request::segments()) - 1) }}</li>
+                        @else
+                            <li><a href="{{ route('home') }}"><i class="bx bx-home"></i> Home</a></li>
+                        @endif
                         <li>@yield('title')</li>
                     </ul>
                 </div>

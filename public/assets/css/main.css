@@ -5225,7 +5225,7 @@ blockquote span {
 }
 
 .item-details .product-images img {
-    width: 100%;
+    max-height: 350px;
     cursor: pointer;
     border: 1px solid #eee;
     border-radius: 4px;

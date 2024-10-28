@@ -47,7 +47,7 @@
                     <div class="product-sidebar">
                         <!-- Start Single Widget -->
                         <div class="single-widget product-search">
-                            <h3 class="mb-2">Search Product</h3>
+                            <h3 class="mb-2 fw-bold">Search Product</h3>
                             <form id="searchForm" class="d-flex" action="{{ route('products.search') }}" method="GET">
                                 <div class="search-input">
                                     <input type="text" id="search-query" name="query" placeholder="Search">
@@ -60,7 +60,7 @@
                         <!-- End Single Widget -->
                         <!-- Start Single Widget -->
                         <div class="single-widget">
-                            <h3 class="mb-2">All Categories</h3>
+                            <h3 class="mb-2 fw-bold">All Categories</h3>
                             <ul class="list">
                                 @foreach ($categories as $category)
                                     <li>
