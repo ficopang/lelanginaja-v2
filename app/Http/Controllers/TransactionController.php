@@ -25,12 +25,23 @@ class TransactionController extends Controller
     public function checkout()
     {
         $userId = auth()->id();
-        $wonProducts = Product::whereHas('bids', function ($query) use ($userId) {
+        $joinedAuctionProducts = Product::whereHas('bids', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
             ->whereDoesntHave('transaction')
             ->where('end_time', '<', Carbon::now()->addHours(7))
             ->get();
+
+        // Get the products where auction_type is 'open'
+        $openAuctionProducts = $joinedAuctionProducts->filter(function ($product) use ($userId) {
+            return $product->auction_type === 'open' && $product->bids()->latest()->first()->user_id === $userId;
+        });
+        // Get the products where auction_type is not 'open'
+        $closedAuctionProducts = $joinedAuctionProducts->filter(function ($product) use ($userId) {
+            return $product->auction_type === 'close' && $product->getHighestBidUser()->id === $userId;
+        });
+
+        $wonProducts = $openAuctionProducts->merge($closedAuctionProducts)->unique('id');
 
         $totalBidAmount = $wonProducts->sum(function ($product) {
             return $product->getTotalBidAmountAttribute();
@@ -46,12 +57,23 @@ class TransactionController extends Controller
     {
         $user = User::find(auth()->id());
         $userId = auth()->id();
-        $wonProducts = Product::whereHas('bids', function ($query) use ($userId) {
+        $joinedAuctionProducts = Product::whereHas('bids', function ($query) use ($userId) {
             $query->where('user_id', $userId);
         })
             ->whereDoesntHave('transaction')
             ->where('end_time', '<', Carbon::now()->addHours(7))
             ->get();
+
+        // Get the products where auction_type is 'open'
+        $openAuctionProducts = $joinedAuctionProducts->filter(function ($product) use ($userId) {
+            return $product->auction_type === 'open' && $product->bids()->latest()->first()->user_id === $userId;
+        });
+        // Get the products where auction_type is not 'open'
+        $closedAuctionProducts = $joinedAuctionProducts->filter(function ($product) use ($userId) {
+            return $product->auction_type === 'close' && $product->getHighestBidUser()->id === $userId;
+        });
+
+        $wonProducts = $openAuctionProducts->merge($closedAuctionProducts)->unique('id');
 
         $cost = "50";
         $status = "shipped";

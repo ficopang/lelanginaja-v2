@@ -31,35 +31,25 @@ class AppServiceProvider extends ServiceProvider
         View::composer('template.generic', function ($view) {
             $categories = Category::all();
             $userId = auth()->id();
-            $wonProducts = Product::whereHas('bids', function ($query) use ($userId) {
+            $joinedAuctionProducts = Product::whereHas('bids', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })
                 ->whereDoesntHave('transaction')
                 ->where('end_time', '<', Carbon::now()->addHours(7))
-                ->where(function ($query) use ($userId) {
-                    $query->where(function ($q) use ($userId) {
-                        // Condition for closed auction type: check if the user has the highest bid
-                        $q->where('auction_type', 'close')
-                            ->whereHas('bids', function ($subQuery) use ($userId) {
-                                $subQuery->select(DB::raw('SUM(bid_amount) as total_bid'))
-                                    ->where('user_id', $userId)
-                                    ->groupBy('user_id', 'product_id')
-                                    ->orderBy('total_bid', 'desc')
-                                    ->limit(1);
-                            });
-                    })
-                        ->orWhere(function ($q) use ($userId) {
-                            // Condition for open auction type: check if the user placed the last bid
-                            $q->where('auction_type', 'open')
-                                ->whereHas('bids', function ($subQuery) use ($userId) {
-                                    $subQuery->where('user_id', $userId)
-                                        ->orderBy('created_at', 'desc')
-                                        ->limit(1); // Last bid by user
-                                });
-                        });
-                })
                 ->get();
 
+            // Get the products where auction_type is 'open'
+            $openAuctionProducts = $joinedAuctionProducts->filter(function ($product) use ($userId) {
+                return $product->auction_type === 'open' && $product->bids()->latest()->first()->user_id === $userId;
+            });
+
+            // Get the products where auction_type is not 'open'
+            $closedAuctionProducts = $joinedAuctionProducts->filter(function ($product) use ($userId) {
+                return $product->auction_type === 'close' && $product->getHighestBidUser()->id === $userId;
+            });
+
+
+            $wonProducts = $openAuctionProducts->merge($closedAuctionProducts)->unique('id');
 
             $totalPrice = $wonProducts->sum(function ($product) {
                 return $product->getTotalBidAmountAttribute();

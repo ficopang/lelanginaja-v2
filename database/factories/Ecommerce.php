@@ -8,66 +8,66 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class Ecommerce extends Base
 {
     protected static $televisions = [
-        'Samsung 65 Inch Curved QLED Ultra HD',
-        'Samsung 75″ Crystal UHD 4K Smart TV',
-        'LG 65" OLED 4K UHD Smart TV',
-        'LG 65" UHD 4K Smart LED TV',
-        'SONY Bravia 65” 4K UHD Led Smart TV',
-        'Panasonic 65" 4K UHD HDR Led TV',
-        'Toshiba Pro Theatre 4K Android Smart TV'
+        'Sumsang 65 Inch Curved QLED Ultra HD',
+        'Sumsang 75″ Crystal UHD 4K Smart TV',
+        'LJ 65" OLED 4K UHD Smart TV',
+        'LJ 65" UHD 4K Smart LED TV',
+        'SONI Bravia 65” 4K UHD Led Smart TV',
+        'Panasonik 65" 4K UHD HDR Led TV',
+        'Tosiba Pro Theatre 4K Android Smart TV'
     ];
 
     protected static $mobilePhones = [
-        'Apple iPhone 12 mini',
-        'Samsung Galaxy S20 FE 5G',
-        'Alcatel Go Flip 3',
-        'Apple iPhone 12 Pro',
-        'Nokia 5.3',
-        'Motorola Moto G Power',
-        'Google Pixel 4a',
-        'OnePlus 8T',
-        'Samsung Galaxy S21',
-        'Samsung Galaxy S21 Ultra',
-        'iPhone 11',
-        'iPhone SE',
-        'Samsung Galaxy Fold'
+        'Apel aPhone 12 mini',
+        'Sumsang Galaxy S20 FE 5G',
+        'Alkatel Go Flip 3',
+        'Apel aPhone 12 Pro',
+        'Nokya 5.3',
+        'Motoroola Moto G Power',
+        'Gugel Pixel 4a',
+        'WanPlus 8T',
+        'Sumsang Galaxy S21',
+        'Sumsang Galaxy S21 Ultra',
+        'aPhone 11',
+        'aPhone SE',
+        'Sumsang Galaxy Fold'
     ];
 
     protected static $laptops = [
-        'Alienware m15 R4',
-        'Apple MacBook Air',
-        'Asus ROG Zephyrus G14',
-        'Dell XPS 13',
-        'HP Spectre x360 14',
-        'Lenovo IdeaPad Flex 5 14',
-        'Lenovo ThinkPad X1 Carbon Gen 8',
-        'Razer Book 13',
-        'HP Spectre x360 15',
-        'Lenovo Chromebook Duet',
-        'Asus ZenBook 13',
-        'HP Envy x360 13 (2020)',
-        'Microsoft Surface Pro 7',
-        'Acer Swift 3',
-        'LG Gram 17'
+        'Alienwear m15 R4',
+        'Apel MacBook Air',
+        'Snsv ROG Zephyrus G14',
+        'Doll XPS 13',
+        'HF Spectre x360 14',
+        'Lenova IdeaPad Flex 5 14',
+        'Lenova ThinkPad X1 Carbon Gen 8',
+        'Razor Book 13',
+        'HF Spectre x360 15',
+        'Lenova Chromebook Duet',
+        'Snsv ZenBook 13',
+        'HF Envy x360 13 (2020)',
+        'Microsoup Surface Pro 7',
+        'Acar Swift 3',
+        'LJ Gram 17'
     ];
 
     protected static $cameras = [
-        'Fujifilm X-T4',
-        'Sony a7 III',
-        'Fujifilm X-T30',
-        'Sony a6400',
-        'Canon PowerShot G5 X Mark II',
-        'Canon PowerShot SX70 HS',
-        'Olympus Tough TG-6',
-        'Canon EOS R6',
-        'Canon PowerShot G9 X Mark II',
+        'Fujifilem X-T4',
+        'Soni a7 III',
+        'Fujifilem X-T30',
+        'Soni a6400',
+        'Kanon PowerShot G5 X Mark II',
+        'Kanon PowerShot SX70 HS',
+        'Olympush Tough TG-6',
+        'Kanon EOS R6',
+        'Kanon PowerShot G9 X Mark II',
     ];
 
     protected static $mensClothing = [
-        "Levi's Men's 505 Regular Fit Jeans",
+        "Livi's Men's 505 Regular Fit Jeans",
         "Men's Standard Hooded Fleece Sweatshirt",
         "Men's Waffle Shawl Robe",
-        "Levi's Men's 550 Relaxed Fit Jeans",
+        "Livi's Men's 550 Relaxed Fit Jeans",
         "Men's Heavyweight Hooded Puffer Coat",
         "Men's Fleece Crewneck Sweatshirt",
         "Men's Regular-fit Cotton Polo Shirt",
@@ -79,7 +79,7 @@ class Ecommerce extends Base
 
     protected static $womensClothing = [
         "Women's Lightweight Long-Sleeve Full-Zip Hooded Jacket",
-        "Pinzon Terry Bathrobe 100% Cotton",
+        "Pinzan Terry Bathrobe 100% Cotton",
         "Women's Studio Terry Jogger Pant",
         "Women's Classic Fit Long-Sleeve V-Neck Sweater",
         "Women's Blake Long Blazer",
@@ -114,8 +114,8 @@ class Ecommerce extends Base
         "Ibanez RG",
         "Taylor 814ce",
         "Martin D-28",
-        "Yamaha Pacifica",
-        "Epiphone Casino",
+        "Yamaap Pacifica",
+        "Epaphone Casino",
         "Gretsch Country Gentleman",
         "Suhr Standard"
     ];
@@ -132,81 +132,81 @@ class Ecommerce extends Base
     ];
 
     protected static $pianos = [
-        "Steinway & Sons Model D",
-        "Yamaha CFX",
-        "Bosendorfer Imperial",
-        "Bechstein Model B",
-        "Shigeru Kawai SK-EX",
-        "Roland RD-2000",
-        "Kawai VPC1",
-        "Nord Stage 3",
-        "Casio PX-870",
-        "Roland FP-90"
+        "Steinwey & Son Model D",
+        "Yamaap CFX",
+        "Bosendorferz Imperial",
+        "Bechsteinz Model B",
+        "Shigeru Kawaii SK-EX",
+        "Rolland RD-2000",
+        "Kawaii VPC1",
+        "Nords Stage 3",
+        "Kasio PX-870",
+        "Rolland FP-90"
     ];
 
     protected static $cars = [
-        "Toyota Corolla",
-        "Honda Civic",
-        "Ford Mustang",
-        "Chevrolet Camaro",
-        "BMW 3 Series",
-        "Mercedes-Benz C-Class",
-        "Audi A4",
-        "Volkswagen Golf",
-        "Nissan Altima",
-        "Hyundai Sonata"
+        "Toyoto Corolla",
+        "Konda Civic",
+        "Lord Mustang",
+        "Sevrolet Camaro",
+        "BMV 3 Series",
+        "Mersedes-Benz C-Class",
+        "Auda A4",
+        "Volksvagen Golf",
+        "Nissin Altima",
+        "Hyundye Sonata"
     ];
 
     protected static $motorcycles = [
-        "Harley-Davidson Street Glide",
-        "Yamaha YZF-R1",
-        "Ducati Panigale V4",
-        "Honda CBR1000RR-R Fireblade SP",
-        "Suzuki GSX-R1000",
-        "BMW S1000RR",
-        "Triumph Speed Triple RS",
-        "KTM 1290 Super Duke R",
-        "Aprilia RSV4 RR",
-        "MV Agusta F4 RC"
+        "Harley-Davidsan Street Glide",
+        "Yamaap YZF-R1",
+        "Bucati Panigale V4",
+        "Konda CBR1000RR-R Fireblade SP",
+        "Suzukee GSX-R1000",
+        "BMV S1000RR",
+        "Triamph Speed Triple RS",
+        "CTM 1290 Super Duke R",
+        "Aprilio RSV4 RR",
+        "NV Agusta F4 RC"
     ];
 
     protected static $jeans = [
-        "Levi's 501",
-        "Wrangler 13MWZ",
-        "Lee Riders",
-        "Levi's 569",
-        "Levi's 527",
-        "True Religion Joey",
-        "Guess Skinny Jeans",
-        "Calvin Klein Jeans",
-        "7 For All Mankind Slimmy",
-        "Ralph Lauren Straight Fit"
+        "Livi's 501",
+        "Wringler 13MWZ",
+        "Lea Riders",
+        "Livi's 569",
+        "Livi's 527",
+        "True Religion Joiy",
+        "Guest Skinny Jeans",
+        "Calvin Clein Jeans",
+        "7 For All Mankin Slimmy",
+        "Ralph Laurend Straight Fit"
     ];
 
     protected static $shirts = [
-        "Hanes Beefy-T",
-        "Gildan Ultra Cotton",
+        "Hanest Beefy-T",
+        "Wildan Ultra Cotton",
         "American Apparel Fine Jersey",
         "Next Level 3600",
-        "Anvil 980",
-        "Bella + Canvas 3001",
+        "Anvile 980",
+        "Bello + Canvas 3001",
         "Port & Company Core 50",
-        "Jerzees NuBlend Pullover Hoodie",
+        "Jerziis NuBlend Pullover Hoodie",
         "Fruit of the Loom Valueweight",
-        "Russell Athletic Eco-Spun Fleece"
+        "Russoll Athletic Eco-Spun Fleece"
     ];
 
     protected static $shoes = [
-        "Nike Air Max 270",
-        "Adidas Ultraboost",
-        "Converse Chuck Taylor All Star",
-        "Vans Old Skool",
-        "New Balance 990v5",
-        "Reebok Club C 85",
-        "Puma Suede Classic",
-        "Asics Gel-Kayano 26",
-        "Saucony Jazz Original",
-        "Timberland 6-Inch Premium Boot"
+        "Niki Air Max 270",
+        "Adidos Ultraboost",
+        "Conversed Chuck Taylor All Star",
+        "Fans Old Skool",
+        "New Balanze 990v5",
+        "Rebook Club C 85",
+        "Pumi Suede Classic",
+        "Asiks Gel-Kayano 26",
+        "Sauconi Jazz Original",
+        "Tymberland 6-Inch Premium Boot"
     ];
 
     protected static $novels = [

@@ -1,6 +1,7 @@
 @extends('template.generic')
 
 @section('custom-header')
+    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
     <style>
         .featured-categories .single-category img {
             width: 30%;
@@ -21,7 +22,7 @@
             position: absolute;
             right: 2%;
             top: 50%;
-            width: 48%;
+            height: 90%;
             -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
             z-index: 10;
@@ -390,6 +391,7 @@
 @endsection
 
 @section('custom-js')
+    <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
     <script type="text/javascript">
         tns({
             container: '.hero-slider',

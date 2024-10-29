@@ -14,7 +14,6 @@
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/boxicons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
     @yield('custom-header')
@@ -104,9 +103,10 @@
                                                 <li>
                                                     <div class="cart-img-head">
                                                         <a class="cart-img"
-                                                            href="/product/{{ $watchlistItem->product->id }}"><img
-                                                                src="{{ $watchlistItem->product->images()->first() ? asset('storage' . $watchlistItem->product->images()->first()->image_url) : 'https://via.placeholder.com/500x500' }}"
-                                                                alt="{{ $watchlistItem->name }}"></a>
+                                                            href="/product/{{ $watchlistItem->product->id }}">
+                                                            <img src="{{ $watchlistItem->product->images()->first() ? asset('storage' . $watchlistItem->product->images()->first()->image_url) : 'https://via.placeholder.com/500x500' }}"
+                                                                alt="{{ $watchlistItem->name }}">
+                                                        </a>
                                                     </div>
 
                                                     <div class="content d-flex align-items-center">
@@ -126,7 +126,7 @@
                                             @endforeach
                                         </ul>
                                         <a href="{{ route('watchlist.index') }}"
-                                            class="d-flex justify-content-center">See all</a>
+                                            class="d-flex justify-content-center mt-2">See all</a>
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
@@ -142,13 +142,18 @@
                                             <a class="text-primary fw-" href="{{ route('cart.checkout') }}">View
                                                 All</a>
                                         </div>
-                                        <ul class="shopping-list">
+                                        <ul class="shopping-list"
+                                            style="
+                                                max-height: 400px;
+                                                overflow: auto;
+                                            ">
                                             @foreach ($wonProducts as $product)
                                                 <li>
                                                     <div class="cart-img-head">
-                                                        <a class="cart-img" href="/product/{{ $product->id }}"><img
-                                                                src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                                                alt="#"></a>
+                                                        <a class="cart-img" href="/product/{{ $product->id }}">
+                                                            <img src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                                                alt="#">
+                                                        </a>
                                                     </div>
 
                                                     <div class="content">
@@ -518,7 +523,6 @@
 
 <!-- ========================= JS here ========================= -->
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script>
     // Countdown Timers
