@@ -484,7 +484,7 @@
                     vt.success(response.message, {
                         title: "Success",
                         position: "top-right",
-                        duration: 2000,
+                        duration: 10000,
                         closable: true
                     });
 
@@ -501,13 +501,22 @@
                     });
                 }
             } else {
-                var error = JSON.parse(xhr.responseText);
-                vt.error(error.error, {
-                    title: "Error",
-                    position: "top-right",
-                    duration: 2000,
-                    closable: true
-                });
+                try {
+                    var error = JSON.parse(xhr.responseText);
+                    vt.error(error.error, {
+                        title: "Error",
+                        position: "top-right",
+                        duration: 2000,
+                        closable: true
+                    });
+                } catch (e) {
+                    vt.error("Something went wrong. Please try again later.", {
+                        title: "Error",
+                        position: "top-right",
+                        duration: 2000,
+                        closable: true
+                    });
+                }
             }
         };
 
@@ -572,14 +581,14 @@
                         const lastBidderElement = document.getElementById('last-bidder');
                         if (data.lastBidder) {
                             addNewBid(formatRupiah(data.currentPrice));
-                            lastBidderElement.textContent = data.lastBidde;
+                            lastBidderElement.textContent = data.lastBidder;
                             addHistory(data);
 
                             if (lastBidder != data.lastBidder) {
                                 vt.info("Current price: Rp" + data.currentPrice, {
                                     title: lastBidder + ' just place a bid',
                                     position: "top-right",
-                                    duration: 2000,
+                                    duration: 10000,
                                     closable: true
                                 });
 

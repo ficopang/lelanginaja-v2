@@ -9,21 +9,21 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <div class="register-form">
+                        {{-- menampilkan error validasi --}}
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="title">
                             <h3>No Account? Register</h3>
                             <p>You need an account to place a bid</p>
                         </div>
                         <form action="{{ route('register') }}" class="row" method="post">
-                            {{-- menampilkan error validasi --}}
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             @csrf
                             <div class="col-sm-6">
                                 <div class="form-group">
