@@ -143,7 +143,7 @@
                                     <p class="fw-bold">Current Bid</p>
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="avatar">
-                                            <span
+                                            <span id="last-bidders-initial"
                                                 class="avatar-initial rounded-circle {{ auth()->user() && $product->bids()->latest('created_at')->first() && $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'bg-primary' : 'bg-secondary' }}">
                                                 {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name[0] : '?' }}</span>
                                         </div>
@@ -579,9 +579,11 @@
 
                         // Update the last bidder's first name
                         const lastBidderElement = document.getElementById('last-bidder');
+                        const lastBidderInitial = document.getElementById('last-bidder-initial');
                         if (data.lastBidder) {
                             addNewBid(formatRupiah(data.currentPrice));
                             lastBidderElement.textContent = data.lastBidder;
+                            lastBidderInitial.textContent = data.lastBidder[0];
                             addHistory(data);
 
                             if (lastBidder != data.lastBidder) {
