@@ -12,6 +12,8 @@ class LogSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        for ($i = 0; $i < 100; $i++) {
+            \App\Models\Log::factory()->create();
+        }
     }
 }

@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
         //     ->count(50)
         //     ->create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $users = DB::table('users')->pluck('id')->toArray();
             $ecommerce = new Ecommerce(fake());
 

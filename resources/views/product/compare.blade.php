@@ -96,8 +96,38 @@
                 </div>
                 <div class="row mb-5">
                     <div class="col-lg-2 col">Product</div>
-                    <div class="col-lg-5 col">{{ $product1 ? $product1->name : '-' }}</div>
-                    <div class="col-lg-5 col">{{ $product2 ? $product2->name : '-' }}</div>
+                    <div class="col-lg-5 col">
+                        @if ($product1)
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="me-3">
+                                    <img src="{{ $product1->images()->first() ? asset('storage' . $product1->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                        alt="{{ $product1->name }}" style="max-width: 100px">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h4><a href="/product/{{ $product1->id }}">
+                                            {{ $product1->name }}</a></h4>
+                                </div>
+                            </div>
+                        @else
+                            -
+                        @endif
+                    </div>
+                    <div class="col-lg-5 col">
+                        @if ($product2)
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="me-3">
+                                    <img src="{{ $product2->images()->first() ? asset('storage' . $product2->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                        alt="{{ $product2->name }}" style="max-width: 100px">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <h4><a href="/product/{{ $product2->id }}">
+                                            {{ $product2->name }}</a></h4>
+                                </div>
+                            </div>
+                        @else
+                            -
+                        @endif
+                    </div>
                 </div>
                 <div class="row mb-5">
                     <div class="col-lg-2 col">Category</div>

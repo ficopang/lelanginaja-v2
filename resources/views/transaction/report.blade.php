@@ -39,12 +39,13 @@
                     <di class="col-12 col-md-6 mb-4">
                         <div class="d-flex align-items-center">
                             <div class="me-3">
-                                <img src="{{ $transaction->product->images()->first() ? asset('storage' . $transaction->product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                    alt="{{ $transaction->product->name }}" style="max-width: 60px">
+                                <img style="max-height:60px"
+                                    src="{{ $transaction->product->images()->first() ? asset('storage' . $transaction->product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                    alt="{{ $transaction->product->name }}">
                             </div>
                             <div class="d-flex flex-column">
-                                <h4><a href="/product/{{ $transaction->product->id }}">
-                                        {{ $transaction->product->name }}</a></h4>
+                                <p><a class="text-dark" href="/product/{{ $transaction->product->id }}">
+                                        {{ $transaction->product->name }}</a></p>
                                 <p class="quantity">
                                     {{ $transaction->product->lastbid() ? $transaction->product->lastbid()->user->first_name . ' - ' : '' }}
                                     <span

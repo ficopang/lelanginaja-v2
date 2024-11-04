@@ -96,7 +96,7 @@
                         </div>
                         <div class="collapse" id="product-details-{{ $tr->product->id }}">
                             <div class="card card-body">
-                                <p>Product Details:</p>
+                                <p class="fw-bold">Product Details:</p>
                                 <ul>
                                     <li>Name: {{ $tr->product->name }}</li>
                                     <li>Description: {{ $tr->product->description }}</li>

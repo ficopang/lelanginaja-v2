@@ -88,12 +88,13 @@
                         <div class="product-images">
                             <main id="gallery">
                                 <div class="main-img d-flex align-items-center justify-content-center">
-                                    <img src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/500x500' }}"
+                                    <img class="border-0"
+                                        src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/500x500' }}"
                                         id="current" alt="{{ $product->name }}">
                                 </div>
                                 <div class="images">
-                                    @foreach ($product->images() as $img)
-                                        <img src="{{ asset('storage' . $img->image_url) }}" class="img"
+                                    @foreach ($product->images as $img)
+                                        <img src="{{ asset('storage' . $img->image_url) }}" class="img border-3"
                                             alt="{{ $product->name }}">
                                     @endforeach
                                 </div>

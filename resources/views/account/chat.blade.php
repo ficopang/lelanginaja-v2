@@ -49,15 +49,20 @@
                                                     <div class="chat-list">
                                                         @foreach ($userLists as $list)
                                                             <a href="{{ '/account/chat/' . $list->id }}"
-                                                                class="d-flex align-items-center bg-light p-1"
+                                                                class="d-flex align-items-center bg-light p-2"
                                                                 style="{{ $user->id == $list->id ? 'background-color: #BCC1CA !important;' : '' }}">
-                                                                <div class="flex-shrink-0 fs-4 m-2">
-                                                                    <i class="bx bx-user"></i>
+                                                                <div class="flex-shrink-0">
+                                                                    <div class="avatar">
+                                                                        <span id="last-bidders-initial"
+                                                                            class="avatar-initial rounded-circle bg-secondary">
+                                                                            {{ $list->first_name[0] }}</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="flex-grow-1 ms-3">
+                                                                <div class="flex-grow-1 ms-2">
                                                                     <h3>{{ $list->first_name }}
                                                                     </h3>
-                                                                    <p>{{ $list->message }}</p>
+                                                                    <p class="text-truncate" style="max-width: 40%">
+                                                                        {{ $list->message }}</p>
                                                                 </div>
                                                             </a>
                                                         @endforeach
@@ -84,10 +89,16 @@
                                                     <span class="chat-icon"><img class="img-fluid"
                                                             src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
                                                             alt="image title"></span>
-                                                    <div class="flex-shrink-0 fs-4 m-2">
-                                                        <i class="bx bx-user"></i>
+                                                    <div class="flex-shrink-0">
+                                                        @if (isset($user))
+                                                            <div class="avatar">
+                                                                <span id="last-bidders-initial"
+                                                                    class="avatar-initial rounded-circle bg-secondary">
+                                                                    {{ $user->first_name[0] }}</span>
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                    <div class="flex-grow-1 ms-3">
+                                                    <div class="flex-grow-1 ms-2">
                                                         <h3>
                                                             @if (isset($user))
                                                                 {{ $user->first_name }}

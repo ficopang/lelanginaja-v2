@@ -1,5 +1,5 @@
 <!-- Start Single Product -->
-<div class="single-product p-0">
+<div class="single-product w-100 p-0">
     <div class="title bg-primary pt-2 fw-bold text-center">
         <a class="fs-6 d-inline-block text-white text-truncate" style="max-width: 80%;"
             href="/product/{{ $product->id }}">{{ $product->name }}</a>
