@@ -117,12 +117,22 @@
                                 <h5 class="fw-bold">YOUR PROFILE INFORMATION</h5>
                                 <hr>
                                 <div class="form-group">
+                                    <label class="d-block text-primary fw-bold">Account Preference</label>
+                                    <p class="text-muted font-size-sm">This setting only affects this device</p>
+                                </div>
+                                <div>
+                                    <div class="form-check form-switch mt-2 mb-4">
+                                        <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                                        <label class="form-check-label" for="darkModeToggle">Toggle dark mode</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="d-block text-danger fw-bold">Delete Account</label>
                                     <p class="text-muted font-size-sm">Once you delete your account, there is no going
                                         back. Please be certain.</p>
                                 </div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger mt-4" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                     Delete Account
                                 </button>
@@ -162,4 +172,21 @@
         </div>
     </div>
     <!-- End edit account Area -->
+@endsection
+
+@section('custom-js')
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Load dark mode preference from local storage
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        darkModeToggle.checked = isDarkMode; // Set checkbox state
+
+        darkModeToggle.addEventListener('change', function() {
+            const isDarkMode = this.checked;
+            document.body.classList.toggle('dark-mode', isDarkMode); // Toggle class based on state
+            // Save dark mode preference to local storage
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+    </script>
 @endsection

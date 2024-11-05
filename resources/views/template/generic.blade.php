@@ -182,6 +182,9 @@
                             </div>
                         @else
                             <div class="navbar-cart ms-auto">
+                                {{-- <span id="dark-mode-toggle">
+                                    <i class='bx bx-sun'></i>
+                                </span> --}}
                                 <div class="button me-2 d-sm-none d-lg-block">
                                     <a href="/register" class="btn">Register</a>
                                 </div>
@@ -564,6 +567,18 @@
 
         updateCountdown();
     });
+
+    // dark mode
+    // const toggleButton = document.getElementById('dark-mode-toggle');
+
+    // toggleButton.addEventListener('click', () => {
+    //     document.body.classList.toggle('dark-mode');
+    // });
+
+    // Load dark mode preference from local storage
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
 </script>
 @yield('custom-js')
 </body>
