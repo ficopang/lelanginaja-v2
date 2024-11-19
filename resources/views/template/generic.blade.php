@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="navbar-cart me-2">
-                                    <div class="cart-items">
+                                    <div class="cart-items me-2">
                                         <a href="javascript:void(0)" class="main-btn">
                                             <i class="bx bx-low-vision"></i>
                                             <span class="total-items">{{ auth()->user()->watchlists->count() }}</span>
@@ -278,7 +278,7 @@
                                     <a href="javascript:void(0)"><i class="bx bxl-instagram"></i></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a>
+                                    <a href="javascript:void(0)"><i class="bx bxl-linkedin"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -386,14 +386,14 @@
                             <ul class="app-btn">
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <i class="bx bx-apple"></i>
+                                        <i class="bx bxl-apple"></i>
                                         <span class="small-title">Download on the</span>
                                         <span class="big-title">App Store</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <i class="bx bx-play-store"></i>
+                                        <i class="bx bxl-play-store"></i>
                                         <span class="small-title">Download on the</span>
                                         <span class="big-title">Google Play</span>
                                     </a>

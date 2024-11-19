@@ -1104,6 +1104,10 @@ body.dark-mode h2 {
     color: var(--text-color) !important;
 }
 
+body.dark-mode h5 {
+    color: var(--text-color) !important;
+}
+
 body.dark-mode a {
     color: var(--text-color) !important;
 }
@@ -1267,12 +1271,8 @@ body.dark-mode .product-sidebar .single-widget h3 {
     color: var(--text-color);
 }
 
-body.dark-mode .product-grids .product-grid-topbar .nav button:not(.active) {
-    background-color: var(--text-color);
-}
-
 body.dark-mode .breadcrumbs {
-    background-color: var(--bg-accent-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
 }
 
@@ -1307,5 +1307,47 @@ body.dark-mode .product-details-info .single-block {
 }
 
 body.dark-mode .nav-link {
+    color: var(--text-color); 
+}
+
+body.dark-mode .bg-light {
+    background-color: var(--bg-accent-color) !important;
+}
+
+body.dark-mode .card {
+    background-color: var(--bg-color);
+}
+
+body.dark-mode .header .navbar-cart .cart-items .shopping-item {
+    background-color: var(--bg-color) !important;
+}
+
+body.dark-mode .header .mega-category-menu .cat-button {
+    color: var(--text-color); 
+}
+
+body.dark-mode .header .mega-category-menu .sub-category {
+    background-color: var(--bg-color) !important;
+}
+
+body.dark-mode .navbar-nav .nav-item .sub-menu {
+    background-color: var(--bg-color) !important;
+}
+
+body.dark-mode .form-control {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color); 
+}
+
+body.dark-mode .header .navbar-cart .cart-items .shopping-item .dropdown-cart-header span {
+    color: var(--text-color); 
+}
+
+body.dark-mode .header .navbar-cart .cart-items .shopping-item .bottom .total span {
+    color: var(--text-color); 
+}
+
+body.dark-mode .btn-outline-dark {
+    background-color: var(--bg-accent-color) !important;
     color: var(--text-color); 
 }

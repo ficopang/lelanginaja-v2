@@ -161,7 +161,7 @@
                                                     data-bs-dismiss="modal">Cancel</button>
                                                 <button type="submit" class="btn btn-danger">Delete Account</button>
                                             </div>
-                                            <form>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
