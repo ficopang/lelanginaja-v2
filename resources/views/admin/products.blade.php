@@ -258,7 +258,11 @@
                     },
                     success: function(response) {
                         // Reload the DataTable after successful deletion
+                        alert(response.message);
                         table.ajax.reload();
+
+                        //reset checkbox
+                        table.column(1).checkboxes.deselectAll();
                     },
                     error: function(xhr, status, error) {
                         alert('An error occurred while deleting the products: ' + error);

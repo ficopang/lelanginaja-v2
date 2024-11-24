@@ -208,7 +208,7 @@ class AdminController extends Controller
             $product->delete();
         }
 
-        return response()->json(['success' => true]);
+        return response()->json(['message' => 'Products deleted successfully.'], 200);
     }
 
     public function getReportList(Request $request): JsonResponse
