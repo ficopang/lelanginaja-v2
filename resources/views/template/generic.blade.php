@@ -233,7 +233,17 @@
                                             <a href="/" aria-label="Toggle navigation">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="/products" aria-label="Toggle navigation">My Products</a>
+                                            <a class="dd-menu collapsed" href="javascript:void(0)"
+                                                data-bs-toggle="collapse" data-bs-target="#submenu-1-3"
+                                                aria-controls="navbarSupportedContent" aria-expanded="false"
+                                                aria-label="Toggle navigation">Product</a>
+                                            <ul class="sub-menu collapse" id="submenu-1-3">
+                                                <li class="nav-item"><a href="{{ route('products.index') }}">My
+                                                        Products</a></li>
+                                                <li class="nav-item"><a
+                                                        href="{{ route('products.compare') }}">Compare Products</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                         <li class="nav-item">
                                             <a class="dd-menu collapsed" href="javascript:void(0)"

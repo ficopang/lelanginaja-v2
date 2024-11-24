@@ -10,6 +10,15 @@
     <!-- char-area -->
     <section class="message-area">
         <div class="container">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-12">
                     <div class="chat-area">
@@ -48,7 +57,7 @@
                                                     <!-- chat-list -->
                                                     <div class="chat-list">
                                                         @foreach ($userLists as $list)
-                                                            <a href="{{ '/account/chat/' . $list->id }}"
+                                                            <a href="{{ route('chat.index', $list->id) }}"
                                                                 class="d-flex align-items-center bg-light p-2"
                                                                 style="{{ $user->id == $list->id ? 'background-color: #BCC1CA !important;' : '' }}">
                                                                 <div class="flex-shrink-0">
@@ -90,7 +99,7 @@
                                                             src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
                                                             alt="image title"></span>
                                                     <div class="flex-shrink-0">
-                                                        @if (isset($user))
+                                                        @if ($user->first_name)
                                                             <div class="avatar">
                                                                 <span id="last-bidders-initial"
                                                                     class="avatar-initial rounded-circle bg-secondary">

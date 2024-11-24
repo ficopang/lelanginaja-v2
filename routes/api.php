@@ -26,5 +26,5 @@ Route::post('/user/{user}', [AdminController::class, 'toggleBan']);
 Route::get('/products', [AdminController::class, 'getproductList']);
 Route::post('/products/delete', [AdminController::class, 'deleteProducts']);
 
-Route::get('/reports', [AdminController::class, 'getReportList']);
-Route::post('/report/{user}', [AdminController::class, 'toggleBan']);
+Route::get('/reports', [AdminController::class, 'getReportList'])->name('getReportList');
+Route::post('/report/{reportType}/{reportId}', [AdminController::class, 'processReport'])->name('processReport');

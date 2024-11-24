@@ -53,7 +53,7 @@
             var table = $('.datatables-basic').DataTable({
                 serverSide: true,
                 ajax: {
-                    url: "/api/reports",
+                    url: "{{ route('getReportList') }}",
                     type: "GET",
                 },
                 columns: [{
@@ -62,7 +62,7 @@
                         data: "id"
                     },
                     {
-                        data: null,
+                        data: "null",
                     },
                     {
                         data: "product"
@@ -190,9 +190,17 @@
                         responsivePriority: 3,
                         title: "Actions",
                         render: function(data, type, row, meta) {
-                            return row.status != 'cancelled' ?
-                                '<button class="btn btn-icon toggle-ban" data-id="' + row.id +
-                                '"><i class="bx bx-block bx-md"></i></button>' : '';
+                            if (row.transaction) {
+                                return row.status != 'cancelled' ?
+                                    '<button class="btn btn-icon process-transaction" data-id="' +
+                                    row.id +
+                                    '"><i class="bx bx-block bx-md"></i></button>' : '';
+                            } else {
+                                return row.status != 'cancelled' ?
+                                    '<button class="btn btn-icon process-product" data-id="' + row
+                                    .id +
+                                    '"><i class="bx bx-block bx-md"></i></button>' : '';
+                            }
                         }
                     }
                 ],
@@ -242,12 +250,34 @@
             $('.dataTables_length select[name="users_length"]').removeClass('form-select-sm');
 
             // Handle button click
-            $('.datatables-basic').on('click', '.toggle-ban', function() {
-                var transactionId = $(this).data('id');
-                var transactionStatus = $(this).data('transaction') ? 'transaction' : 'product';
+            $('.datatables-basic').on('click', '.process-transaction', function() {
+                var reportId = $(this).data('id');
                 if (confirm('Are you sure you want to change status this record?')) {
                     $.ajax({
-                        url: '/api/report/' + transactionStatus + '/' + transactionId,
+                        url: '/api/report/transaction/' + reportId,
+                        type: 'POST',
+                        data: {
+                            _method: 'POST',
+                            _token: '{{ csrf_token() }}' // If you need to send a CSRF token
+                        },
+                        success: function(response) {
+                            // Handle success response
+                            alert(response.message);
+                            table.ajax.reload();
+                        },
+                        error: function(xhr) {
+                            // Handle error response
+                            alert('An error occurred while accessing the server.');
+                        }
+                    });
+                }
+            });
+
+            $('.datatables-basic').on('click', '.process-product', function() {
+                var reportId = $(this).data('id');
+                if (confirm('Are you sure you want to change status this record?')) {
+                    $.ajax({
+                        url: '/api/report/product/' + reportId,
                         type: 'POST',
                         data: {
                             _method: 'POST',

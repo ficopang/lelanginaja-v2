@@ -43,7 +43,7 @@
                                     <div class="mb-3">
                                         <label for="product-name" class="form-label">Product Name</label>
                                         <input type="text" class="form-control" id="product-name" name="product-name"
-                                            placeholder="Iphone XR" required>
+                                            value="{{ old('product-name') }}" placeholder="Iphone XR" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="category-select" class="form-label">Select a Category</label>
@@ -60,23 +60,25 @@
                                     <div class="mb-3">
                                         <label for="product-description" class="form-label">Product Description</label>
                                         <textarea class="form-control" id="product-description" name="product-description" rows="3"
-                                            placeholder="Iphone XR brand new in box" required></textarea>
+                                            placeholder="Iphone XR brand new in box" required>{{ old('product-description') }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="starting-price" class="form-label">Starting Price</label>
                                         <input type="number" min="0" class="form-control" id="starting-price"
-                                            name="starting-price" required step="1000" placeholder="4000000">
+                                            value="{{ old('starting-price') }}" name="starting-price" required
+                                            step="1000" placeholder="4000000">
                                     </div>
                                     <div class="mb-3">
                                         <label for="min-bid-increment" class="form-label">Minimum Bid Increment</label>
                                         <input type="number" class="form-control" id="min-bid-increment"
-                                            name="min-bid-increment" min="1000" required step="1000"
-                                            placeholder="100000">
+                                            value="{{ old('min-bid-increment') }}" name="min-bid-increment" min="1000"
+                                            required step="1000" placeholder="100000">
                                     </div>
                                     <div class="mb-3">
                                         <label for="min-bid-users" class="form-label">Minimum Bid User(s)</label>
                                         <input type="number" min="1" class="form-control" id="min-bid-users"
-                                            name="min-bid-users" value="1" placeholder="5" required>
+                                            value="{{ old('min-bid-users') }}" name="min-bid-users" value="1"
+                                            placeholder="5" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="product-image" class="form-label">Product Image</label>
@@ -86,17 +88,18 @@
                                     <div class="mb-3">
                                         <label for="reset-time" class="form-label">Reset Time (second)</label>
                                         <input type="number" min="30" class="form-control" id="reset-time"
-                                            name="reset-time" required step="30" value="30" placeholder="30">
+                                            value="{{ old('reset-time') }}" name="reset-time" required step="30"
+                                            value="30" placeholder="30">
                                     </div>
                                     <div class="mb-3">
                                         <label for="start-time" class="form-label">Start Time</label>
                                         <input type="datetime-local" class="form-control" id="start-time"
-                                            name="start-time" required>
+                                            value="{{ old('start-time') }}" name="start-time" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="end-time" class="form-label">End Time</label>
                                         <input type="datetime-local" class="form-control" id="end-time" name="end-time"
-                                            required>
+                                            value="{{ old('end-time') }}" required>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Add Product</button>
@@ -155,7 +158,8 @@
                                                             alt="{{ $product->name }}" class="object-fit-cover">
                                                         <div class="content">
                                                             <h3 class="title"><a
-                                                                    href="javascript:void(0)">{{ $product->name }}</a></h3>
+                                                                    href="javascript:void(0)">{{ $product->name }}</a>
+                                                            </h3>
                                                             <span
                                                                 class="price">{{ formatRupiah($product->starting_price) }}</span>
                                                         </div>

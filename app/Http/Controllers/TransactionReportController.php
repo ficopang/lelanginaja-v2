@@ -20,6 +20,11 @@ class TransactionReportController extends Controller
             'report_text' => 'required|min:5|max:100'
         ]);
 
+        $report = TransactionReport::where('transaction_id', $transaction->id)->where('user_id', auth()->user()->id)->first();
+        if ($report) {
+            return redirect()->back()->withErrors('You have already reported this transaction');
+        }
+
         $report = new TransactionReport();
         $report->user_id = auth()->user()->id;
         $report->transaction_id = $transaction->id;

@@ -27,6 +27,11 @@ class ProductReportController extends Controller
             'report_text' => 'required|min:5|max:100'
         ]);
 
+        $report = ProductReport::where('product_id', $product->id)->where('user_id', auth()->user()->id)->first();
+        if ($report) {
+            return redirect()->back()->withErrors('You have already reported this product');
+        }
+
         $report = new ProductReport();
         $report->user_id = auth()->user()->id;
         $report->product_id = $product->id;

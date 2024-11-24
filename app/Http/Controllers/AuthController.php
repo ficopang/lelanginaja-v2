@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required', 'min:6'],
         ]);
 
         if (Auth::attempt($credentials, $request->remember)) {
@@ -38,7 +38,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'required|numeric|min:10',
             'address' => 'required',
-            'password' => 'required|alpha_num|min:8|required_with:confirm_password|same:confirm_password',
+            'password' => 'required|alpha_num|min:6|required_with:confirm_password|same:confirm_password',
             'confirm_password' => 'required'
         ]);
 

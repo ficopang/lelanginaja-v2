@@ -5,19 +5,18 @@
 @section('content')
     <!-- Report -->
     <div class="container section">
+        {{-- menampilkan error validasi --}}
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="card p-2">
             <div class="card-body">
-                {{-- menampilkan error validasi --}}
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <div class="d-flex align-items-center">
                     <div class="me-3">
                         <img src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"

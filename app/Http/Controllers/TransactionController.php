@@ -48,7 +48,7 @@ class TransactionController extends Controller
         });
 
         $log = new LogController();
-        $recommendations = $log->recommendProducts(auth()->id())->take(3);
+        $recommendations = $log->recommendProducts(auth()->id()) ? $log->recommendProducts(auth()->id())->take(3) : Product::all()->random(3);
 
         return view('cart.checkout', compact('wonProducts', 'totalBidAmount', 'recommendations'));
     }

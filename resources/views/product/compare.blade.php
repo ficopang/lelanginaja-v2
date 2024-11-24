@@ -59,7 +59,7 @@
 @section('content')
     <!-- Report -->
     <div class="container section text-center">
-        <div class="card">
+        <div class="card pt-4">
             <div class="card-body">
                 <div class="row mb-5">
                     <form id="search" class="d-flex" action="{{ route('products.compare') }}" method="GET">

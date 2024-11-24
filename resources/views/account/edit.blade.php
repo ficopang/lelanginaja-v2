@@ -6,13 +6,28 @@
 @section('content')
     <!-- Start edit account Area -->
     <div class="container section">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-3 d-none d-md-block">
                 <div class="card">
                     <div class="card-body">
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile Information</a>
+                            <a class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                                aria-selected="true">Profile Information</a>
                             <a class="nav-link" id="v-pills-security-tab" data-bs-toggle="pill" href="#v-pills-security"
                                 role="tab" aria-controls="v-pills-security" aria-selected="false">Security</a>
                             <a class="nav-link" id="v-pills-account-tab" data-bs-toggle="pill" href="#v-pills-account"
@@ -44,20 +59,6 @@
                                 <hr>
                                 <form action="{{ route('account.update') }}" method="POST">
                                     @method('PUT')
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                    @if (session('success'))
-                                        <div class="alert alert-success">
-                                            {{ session('success') }}
-                                        </div>
-                                    @endif
                                     @csrf
                                     <div class="mb-3">
                                         <label for="name" class="form-label">First Name</label>

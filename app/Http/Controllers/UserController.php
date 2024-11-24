@@ -42,8 +42,8 @@ class UserController extends Controller
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'password' => 'required',
-            'new_password' => 'required|alpha_num|min:8|required_with:confirm_new_password|same:confirm_new_password',
+            'password' => 'required|min:6',
+            'new_password' => 'required|alpha_num|min:6|required_with:confirm_new_password|same:confirm_new_password',
             'confirm_new_password' => 'required'
         ]);
 
@@ -54,7 +54,7 @@ class UserController extends Controller
 
             return back()->with('success', 'Password updated successfully');
         } else {
-            return back()->withErrors('Wrong password');
+            return back()->withErrors('Incorrect password');
         }
     }
 
@@ -93,7 +93,7 @@ class UserController extends Controller
 
             return redirect()->route('login')->withSuccess('Account deleted successfully.');
         } else {
-            return back()->withErrors('Wrong password');
+            return back()->withErrors('Incorrect password');
         }
     }
 }

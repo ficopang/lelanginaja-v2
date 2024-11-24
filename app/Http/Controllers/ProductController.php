@@ -55,13 +55,13 @@ class ProductController extends Controller
             'product-name' => 'required',
             'category' => 'required',
             'product-description' => 'required',
-            'starting-price' => 'required|numeric',
-            'min-bid-increment' => 'required|numeric',
-            'min-bid-users' => 'required|numeric',
+            'starting-price' => 'required|numeric|min:0',
+            'min-bid-increment' => 'required|numeric|min:1000',
+            'min-bid-users' => 'required|numeric|min:1',
             'product-image' => 'required|image',
-            'reset-time' => 'required|numeric',
+            'reset-time' => 'required|numeric|min:30',
             'start-time' => 'required|date',
-            'end-time' => 'required|date',
+            'end-time' => 'required|date|after:start-time',
         ]);
 
         $product = new Product();
@@ -142,13 +142,13 @@ class ProductController extends Controller
             'product-name' => 'required',
             'category' => 'required',
             'product-description' => 'required',
-            'starting-price' => 'required|numeric',
-            'min-bid-increment' => 'required|numeric',
-            'min-bid-users' => 'required|numeric',
+            'starting-price' => 'required|numeric|min:0',
+            'min-bid-increment' => 'required|numeric|min:1000',
+            'min-bid-users' => 'required|numeric|min:1',
             'product-image' => 'image',
-            'reset-time' => 'required|numeric',
+            'reset-time' => 'required|numeric|min:30',
             'start-time' => 'required|date',
-            'end-time' => 'required|date',
+            'end-time' => 'required|date|after:start-time',
         ]);
 
         $product->name = $request->input('product-name');

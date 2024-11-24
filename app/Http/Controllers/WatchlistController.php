@@ -15,7 +15,7 @@ class WatchlistController extends Controller
 
         // $recommendations = Product::all()->random(4);
         $log = new LogController();
-        $recommendations = $log->recommendProducts(auth()->id())->take(4);
+        $recommendations = $log->recommendProducts(auth()->id()) ? $log->recommendProducts(auth()->id())->take(4) : Product::all()->random(4);
 
         return view('account.watchlist', compact('watchlists', 'recommendations'));
     }

@@ -8,6 +8,14 @@
         <form method="post" action="{{ route('cart.checkout') }}">
             @csrf
             <div class="container">
+                {{-- menampilkan error validasi --}}
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ $errors->first() }}</li>
+                        </ul>
+                    </div>
+                @endif
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="checkout-steps-form-style-1">
@@ -18,16 +26,6 @@
                                     <section class="checkout-steps-form-content collapse show" id="collapseFour"
                                         aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                {{-- menampilkan error validasi --}}
-                                                @if (count($errors) > 0)
-                                                    <div class="alert alert-danger">
-                                                        <ul>
-                                                            <li>{{ $errors->first() }}</li>
-                                                        </ul>
-                                                    </div>
-                                                @endif
-                                            </div>
                                             <div class="col-md-12">
                                                 <div class="single-form form-default">
                                                     <div class="row">
@@ -148,7 +146,7 @@
                                                         alt="{{ $recommend->name }}" style="max-width: 64px">
                                                 </div>
                                                 <div class="d-flex flex-column">
-                                                    <h4><a href="/recommend/{{ $recommend->id }}">
+                                                    <h4><a href="{{ route('products.show', $recommend->id) }}">
                                                             {{ $recommend->name }}</a></h4>
                                                     <p class="quantity">
                                                         {{ $recommend->lastbid() ? $recommend->lastbid()->user->first_name . ' - ' : '' }}

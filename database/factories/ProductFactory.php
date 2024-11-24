@@ -69,7 +69,7 @@ class ProductFactory extends Factory
             'reset_time' => 30,
             'start_time' => fake()->dateTimeBetween('now', '+1 week'),
             'start_time' => fake()->dateTimeBetween('now', '+1 week'),
-            'end_time' => fake()->dateTimeBetween('+1 week', '+2 weeks'),
+            'end_time' => fake()->dateTimeBetween('-1 days', '+2 weeks'),
             'created_at' => now(),
             'updated_at' => now()
         ];

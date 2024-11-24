@@ -311,4 +311,46 @@ class AdminController extends Controller
             'data' => $combinedData,
         ]);
     }
+
+    public function processReport(Request $request, $reportType, $reportId): JsonResponse
+    {
+        if (!$reportType || !$reportId) {
+            return response()->json(['error' => 'Invalid request.'], 400);
+        }
+        $report = $reportType === 'product' ? ProductReport::find($reportId) : TransactionReport::find($reportId);
+        if (!$report) {
+            return response()->json(['error' => 'Report not found.'], 404);
+        }
+
+        try {
+            if ($reportType === 'product') {
+                $product = $report->product;
+                if ($product) {
+                    if ($product->logs()) $product->logs()->delete();
+                    if ($product->transaction()) {
+                        if (isset($product->transaction->report)) $product->transaction->report->delete();
+                        $product->transaction()->delete();
+                    }
+                    if ($product->bids()) $product->bids()->delete();
+                    if ($product->images()) $product->images()->delete();
+                    if ($product->watchlists()) $product->watchlists()->delete();
+                    if ($product->reports()) $product->reports()->delete();
+                    $product->delete();
+                }
+            } else {
+                $transaction = $report->transaction;
+                if ($transaction) {
+                    $transaction->status = 'cancelled';
+                    $transaction->save();
+
+                    $report->user()->increment('balance', $transaction->final_price);
+                    $report->save();
+                }
+            }
+            $report->delete();
+            return response()->json(['message' => 'Report deleted successfully.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error deleting report.'], 500);
+        }
+    }
 }
