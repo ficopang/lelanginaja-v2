@@ -584,7 +584,7 @@
                             lastBidderInitial.textContent = data.lastBidderName.toString().charAt(0);
                             addHistory(data);
 
-                            if (data.lastBidder != {{ auth()->user()->id }}) {
+                            if (data.lastBidder != {{ auth()->user()->id ?? 0 }}) {
                                 vt.info("Current price: Rp" + data.currentPrice, {
                                     title: data.lastBidderName + ' just place a bid',
                                     position: "top-right",
