@@ -144,14 +144,14 @@
                                     <p class="fw-bold">Current Bid</p>
                                     <div class="d-flex align-items-center gap-2">
                                         <div class="avatar">
-                                            <span id="last-bidders-initial"
+                                            <span id="last-bidder-initial"
                                                 class="avatar-initial rounded-circle {{ auth()->user() && $product->bids()->latest('created_at')->first() && $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'bg-primary' : 'bg-secondary' }}">
                                                 {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name[0] : '?' }}</span>
                                         </div>
                                         <span
                                             class="d-inline {{ auth()->user() && $product->bids()->latest('created_at')->first() && $product->bids()->latest('created_at')->first()->user->id === auth()->user()->id ? 'text-primary' : 'text-secondary' }} fw-bold"
                                             id="last-bidder">
-                                            {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name . ' ' . $product->bids()->latest('created_at')->first()->user->last_name : 'No bids yet' }}
+                                            {{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name : 'No bids yet' }}
                                         </span>
                                     </div>
                                 </div>
@@ -561,14 +561,11 @@
 
                 histories.row.add([
                     data.createdAt,
-                    data.lastBidder,
+                    data.lastBidderName,
                     bidAmount,
                     currentPrice
                 ]).draw();
             }
-
-            lastBidder =
-                '{{ $product->bids()->latest('created_at')->first() ? $product->bids()->latest('created_at')->first()->user->first_name : '' }}'
 
             window.addEventListener('load', function() {
                 Echo.channel('room.' + {{ $product->id }})
@@ -583,19 +580,17 @@
                         const lastBidderInitial = document.getElementById('last-bidder-initial');
                         if (data.lastBidder) {
                             addNewBid(formatRupiah(data.currentPrice));
-                            lastBidderElement.textContent = data.lastBidder;
-                            lastBidderInitial.textContent = data.lastBidder[0];
+                            lastBidderElement.textContent = data.lastBidderName;
+                            lastBidderInitial.textContent = data.lastBidderName.toString().charAt(0);
                             addHistory(data);
 
-                            if (lastBidder != data.lastBidder) {
+                            if (data.lastBidder != {{ auth()->user()->id }}) {
                                 vt.info("Current price: Rp" + data.currentPrice, {
-                                    title: lastBidder + ' just place a bid',
+                                    title: data.lastBidderName + ' just place a bid',
                                     position: "top-right",
                                     duration: 10000,
                                     closable: true
                                 });
-
-                                lastBidder = data.lastBidder;
                             }
                         }
                     });

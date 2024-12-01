@@ -57,14 +57,15 @@ class BidController extends Controller
 
         // send event
         if ($product->auction_type != 'closed') {
-            event(new PlaceBidEvent(
+            broadcast(new PlaceBidEvent(
                 roomId: $productId,
                 createdAt: $bid->created_at,
                 endTime: $endTime,
-                lastBidder: $lastBidderFirstName,
+                lastBidder: $bid->user_id,
+                lastBidderName: $lastBidderFirstName,
                 bidAmount: $bid->bid_amount,
                 currentPrice: $product->getTotalBidAmountAttribute()
-            ));
+            ))->toOthers();
         }
 
         $logs = new Log([

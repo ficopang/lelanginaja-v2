@@ -16,17 +16,18 @@ class PlaceBidEvent implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $roomId;
-    public $createdAt, $endTime, $lastBidder, $bidAmount, $currentPrice;
+    public $createdAt, $endTime, $lastBidder, $lastBidderName, $bidAmount, $currentPrice;
 
     /**
      * Create a new event instance.
      */
-    public function __construct($roomId, $createdAt, $endTime, $lastBidder, $bidAmount, $currentPrice)
+    public function __construct($roomId, $createdAt, $endTime, $lastBidder, $lastBidderName, $bidAmount, $currentPrice)
     {
         $this->roomId = $roomId;
         $this->createdAt = $createdAt;
         $this->endTime = $endTime;
         $this->lastBidder = $lastBidder;
+        $this->lastBidderName = $lastBidderName;
         $this->bidAmount = $bidAmount;
         $this->currentPrice = $currentPrice;
     }
