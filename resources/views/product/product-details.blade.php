@@ -75,7 +75,7 @@
             transform: translateX(0);
         }
     </style>
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    {{-- @vite(['resources/js/app.js', 'resources/css/app.css']) --}}
 @endsection
 
 @section('content')
@@ -312,6 +312,22 @@
 
 @section('custom-js')
     <script src="{{ asset('assets/js/vanilla-toast.min.js') }}"></script>
+
+    <script src="https://js.pusher.com/8.0.1/pusher.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.17.1/echo.iife.min.js"></script>
+    <script>
+        window.Pusher = Pusher
+
+        window.Echo = new Echo({
+            broadcaster: '{{ env('BROADCAST_DRIVER') }}',
+            key: '{{ env('PUSHER_APP_KEY') }}',
+            wsHost: '{{ env('PUSHER_HOST') ?: 'api-' . env('PUSHER_APP_CLUSTER', 'mt1') . '.pusher.com' }}',
+            wsPort: {{ env('PUSHER_PORT', 443) }},
+            cluster: '{{ env('PUSHER_APP_CLUSTER', 'mt1') }}',
+            encrypted: true,
+            forceTLS: {{ env('PUSHER_SCHEME', 'https') === 'https' }},
+        });
+    </script>
 
     <script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
