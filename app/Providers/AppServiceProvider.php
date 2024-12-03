@@ -27,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
         // timezone
         Carbon::setLocale('id');
 
+        // force URLs to 'https'
+        if($this->app->environment('production')) {
+            URL::forceScheme('https');
+        };
+
         // Use the `view` method to specify the template(s) you want to pass data to
         View::composer('template.generic', function ($view) {
             $categories = Category::all();
