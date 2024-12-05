@@ -77,14 +77,17 @@
                                                 class="btn btn-sm shadow rounded-circle btn-outline-dark d-flex justify-content-center align-items-center icon-circle"><i
                                                     class="bx bxs-conversation"></i></a>
                                         </li>
-                                        <li>
-                                            <form action="{{ route('transaction.finish', $tr->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit"
-                                                    class="btn btn-sm shadow rounded-circle btn-outline-dark d-flex justify-content-center align-items-center icon-circle text-success"><i
-                                                        class="bx bxs-check-circle"></i></button>
-                                            </form>
-                                        </li>
+                                        @if ($tr->status == 'Pending')
+                                            <li>
+
+                                                <form action="{{ route('transaction.finish', $tr->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-sm shadow rounded-circle btn-outline-dark d-flex justify-content-center align-items-center icon-circle text-success"><i
+                                                            class="bx bxs-check-circle"></i></button>
+                                                </form>
+                                            </li>
+                                        @endif
                                         <li>
                                             <a href="{{ route('transaction.report.store', $tr->id) }}"
                                                 class="btn btn-sm shadow rounded-circle btn-outline-dark d-flex justify-content-center align-items-center icon-circle text-danger"><i

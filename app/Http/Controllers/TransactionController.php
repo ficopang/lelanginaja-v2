@@ -80,12 +80,12 @@ class TransactionController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|numeric',
             'address' => 'required|min:5|max:100',
             'city' => 'required',
             'province' => 'required',
             'country' => 'required',
-            'postal_code' => 'required|integer|between:10000,99999',
+            'postal_code' => 'required|integer|between:10000,999999',
         ]);
 
         foreach ($wonProducts as $product) {
@@ -120,7 +120,7 @@ class TransactionController extends Controller
             return back()->with('error', 'Transaction not found');
         }
 
-        $tr->status = "completed";
+        $tr->status = "Completed";
         $tr->seller()->increment('balance', $tr->final_price);
         $tr->save();
 

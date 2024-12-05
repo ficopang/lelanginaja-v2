@@ -33,13 +33,14 @@
                                                             <label for="name">Receiver's name</label>
                                                             <input type="text" class="form-control"
                                                                 placeholder="Jane Doe" name="name" id="name"
-                                                                value="{{ old('name') }}">
+                                                                value="{{ old('name') }}" required>
                                                         </div>
                                                         <div class="col-md-6 form-input form">
                                                             <label for="phone_number">Phone Number</label>
                                                             <input type="text" class="form-control"
                                                                 placeholder="081296595207" id="phone_number"
-                                                                name="phone_number" value="{{ old('phone_number') }}">
+                                                                name="phone_number" value="{{ old('phone_number') }}"
+                                                                required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -48,7 +49,8 @@
                                                 <div class="single-form form-default">
                                                     <div class="form-input form">
                                                         <label for="addres">Address</label>
-                                                        <textarea class="form-control" placeholder="Mawar Raya Street No. 123" id="address" name="address" rows="3">{{ old('address') }}</textarea>
+                                                        <textarea class="form-control" placeholder="Mawar Raya Street No. 123" id="address" name="address" rows="3"
+                                                            required>{{ old('address') }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,7 +59,8 @@
                                                     <div class="form-input form">
                                                         <label for="city">City</label>
                                                         <input type="text" class="form-control" placeholder="Tangerang"
-                                                            id="city" name="city" value="{{ old('city') }}">
+                                                            id="city" name="city" value="{{ old('city') }}"
+                                                            required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -67,7 +70,7 @@
                                                         <label for="postal_code">Post Code</label>
                                                         <input type="text" class="form-control" placeholder="15138"
                                                             id="postal_code" name="postal_code"
-                                                            value="{{ old('postal_code') }}">
+                                                            value="{{ old('postal_code') }}" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,7 +79,7 @@
                                                     <div class="form-input form">
                                                         <label for="province">Province</label>
                                                         <input type="text" class="form-control" placeholder="Banten"
-                                                            id="province" name="province">
+                                                            id="province" name="province" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,7 +88,7 @@
                                                     <div class="form-input form">
                                                         <label for="country">Country</label>
                                                         <input type="text" class="form-control" placeholder="Indonesia"
-                                                            id="country" name="country">
+                                                            id="country" name="country" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -103,7 +106,11 @@
                                     <div class="dropdown-cart-header">
                                         <span>{{ $wonProducts->count() }} Items</span>
                                     </div>
-                                    <ul class="shopping-list">
+                                    <ul class="shopping-list"
+                                        style="
+                                                max-height: 200px;
+                                                overflow: auto;
+                                            ">
                                         @foreach ($wonProducts as $product)
                                             <li>
                                                 <div class="cart-img-head">

@@ -95,7 +95,11 @@
                                         <!-- Shopping Item -->
                                         <div class="shopping-item" style="z-index: 1000">
                                             <p class="p-0">Watchlist</p>
-                                            <ul class="shopping-list">
+                                            <ul class="shopping-list"
+                                                style="
+                                                max-height: 400px;
+                                                overflow: auto;
+                                            ">
                                                 @foreach (auth()->user()->watchlists as $watchlistItem)
                                                     @if ($loop->iteration > 3)
                                                     @break
@@ -144,7 +148,7 @@
                                         </div>
                                         <ul class="shopping-list"
                                             style="
-                                                max-height: 400px;
+                                                max-height: 200px;
                                                 overflow: auto;
                                             ">
                                             @foreach ($wonProducts as $product)
