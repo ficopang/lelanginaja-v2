@@ -31,6 +31,6 @@ class TransactionReportController extends Controller
         $report->reason = $request->report_text;
         $report->save();
 
-        return redirect('/');
+        return redirect()->route('home')->with('success', 'Report created successfully');;
     }
 }

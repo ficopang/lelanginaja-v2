@@ -54,6 +54,22 @@
     <!-- Start Hero Area -->
     <section class="hero-area">
         <div class="container">
+
+            {{-- menampilkan error validasi --}}
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{{ $errors->first() }}</li>
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-lg-8 col-12 custom-padding-right">
                     <div class="slider-head">

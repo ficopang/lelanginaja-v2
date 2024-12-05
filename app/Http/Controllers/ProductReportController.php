@@ -37,6 +37,6 @@ class ProductReportController extends Controller
         $report->product_id = $product->id;
         $report->reason = $request->report_text;
         $report->save();
-        return redirect('/');
+        return redirect()->route('home')->with('success', 'Report created successfully');
     }
 }
