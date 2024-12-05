@@ -280,7 +280,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <!-- Start Nav Social -->
                         <div class="nav-social">
-                            <h5 class="title">Follow Us:</h5>
+                            {{-- <h5 class="title">Follow Us:</h5>
                             <ul>
                                 <li>
                                     <a href="javascript:void(0)"><i class="bx bxl-facebook-circle"></i></a>
@@ -294,7 +294,8 @@
                                 <li>
                                     <a href="javascript:void(0)"><i class="bx bxl-linkedin"></i></a>
                                 </li>
-                            </ul>
+                            </ul> --}}
+                            <h5 class="title">Balance: {{ formatRupiah(auth()->user()->balance) }}</h5>
                         </div>
                         <!-- End Nav Social -->
                     </div>
