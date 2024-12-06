@@ -574,6 +574,10 @@
             function addHistory(data) {
                 var bidAmount = formatRupiah(data.bidAmount);
                 var currentPrice = formatRupiah(data.currentPrice);
+                var currentBalance = formatRupiah(data.currentBalance);
+
+                const balanceElement = document.getElementById('balance');
+                balanceElement.textContent = currentBalance;
 
                 histories.row.add([
                     data.createdAt,

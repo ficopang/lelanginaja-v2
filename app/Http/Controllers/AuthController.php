@@ -54,7 +54,7 @@ class AuthController extends Controller
         $user->last_name = $request->lastname;
         $user->email = $request->email;
         $user->phone_number = $request->phone;
-        $user->balance = 100000;
+        $user->balance = 1000000;
         $user->address = $request->address;
         $user->password = Hash::make($request->password);
         $user->save();

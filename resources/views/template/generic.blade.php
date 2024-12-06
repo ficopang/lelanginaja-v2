@@ -295,7 +295,8 @@
                                     <a href="javascript:void(0)"><i class="bx bxl-linkedin"></i></a>
                                 </li>
                             </ul> --}}
-                            <h5 class="title">Balance: {{ formatRupiah(auth()->user()->balance) }}</h5>
+                            <h5 class="title">Balance: <span
+                                    id="balance">{{ formatRupiah(auth()->user()->balance) }}</span></h5>
                         </div>
                         <!-- End Nav Social -->
                     </div>

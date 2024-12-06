@@ -62,7 +62,7 @@ class ProductFactory extends Factory
             'category_id' => Category::where('name', $randomCategory)->first()->id,
             'name' => $randomCategory,
             'description' => fake()->paragraph,
-            'starting_price' => fake()->numberBetween(10, 1000) * 1000,
+            'starting_price' => fake()->numberBetween(1, 1000) * 1000,
             'auction_type' => fake()->randomElement(['open', 'close']),
             'min_bid_increment' => fake()->numberBetween(1, 100) * 1000,
             'min_bid_users' => fake()->numberBetween(1, 3),

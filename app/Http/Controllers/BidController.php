@@ -6,6 +6,7 @@ use App\Events\PlaceBidEvent;
 use App\Models\Bid;
 use App\Models\Log;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -25,8 +26,19 @@ class BidController extends Controller
             return response()->json(['error' => $validator->errors()], 400);
         }
 
-        if ($request->input('bid_amount') % $product->min_bid_increment != 0) {
+        if ($request->input('bid_amount') == 0 || $request->input('bid_amount') % $product->min_bid_increment != 0) {
             return response()->json(['error' => 'Bid value must be multiply of bid increment'], 400);
+        }
+
+        // get latest bid and refund
+        $latestBid = $product->bids()->latest('created_at')->first();
+        $latestBidder = User::findOrFail($latestBid->user_id);
+        $latestBidder->balance += $product->getTotalBidAmountAttribute();
+
+        if ($latestBid->user_id != auth()->user()->id && auth()->user()->balance < $product->getTotalBidAmountAttribute() + $request->input('bid_amount')) {
+            return response()->json(['error' => 'Insufficient balancez'], 400);
+        } else if ($latestBid->user_id == auth()->user()->id && $latestBidder->balance < $product->getTotalBidAmountAttribute() + $request->input('bid_amount')) {
+            return response()->json(['error' => 'Insufficient balance'], 400);
         }
 
         // Check if bid time is within 30 seconds of the end time
@@ -37,6 +49,14 @@ class BidController extends Controller
         if ($bidTime->greaterThan($endTime)) {
             return response()->json(['error' => 'Time limit exceeded'], 400);
         }
+
+        $latestBidder->save();
+
+        // deduct user balance
+        $user = User::findOrFail(auth()->id());
+        // check if logged in user already bid on product
+        $user->balance -= $product->getTotalBidAmountAttribute() + $request->input('bid_amount');
+        $user->save();
 
         // Place the bid
         $bid = new Bid();
@@ -64,7 +84,8 @@ class BidController extends Controller
                 lastBidder: $bid->user_id,
                 lastBidderName: $lastBidderFirstName,
                 bidAmount: $bid->bid_amount,
-                currentPrice: $product->getTotalBidAmountAttribute()
+                currentPrice: $product->getTotalBidAmountAttribute(),
+                currentBalance: $user->balance,
             ))->toOthers();
         }
 
