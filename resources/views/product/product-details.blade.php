@@ -476,6 +476,11 @@
             });
         @endguest
         @auth
+        vt.info("Placing your bid", {
+            title: "Processing...",
+            position: "top-right",
+            closable: true
+        });
         var bidAmount = document.getElementById('bid-amount').value;
 
         // Create a new XHR object
@@ -508,6 +513,9 @@
                     @if ($product->auction_type == 'close')
                         latestBidValue += parseInt(bidAmount);
                         addNewBid(formatRupiah(latestBidValue));
+
+                        const balanceElement = document.getElementById('balance');
+                        balanceElement.textContent = response.balance;
                     @endif
                 } else {
                     vt.error(response.error, {

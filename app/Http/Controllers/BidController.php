@@ -96,6 +96,6 @@ class BidController extends Controller
         ]);
         $logs->save();
 
-        return response()->json(['message' => 'Bid placed successfully']);
+        return response()->json(['message' => 'Bid placed successfully', 'balance' => $user->balance]);
     }
 }

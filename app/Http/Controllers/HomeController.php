@@ -23,15 +23,20 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
-        $specialOffer = Product::orderBy('start_time', 'asc')->limit(3)->get();
+        $specialOffer = Product::inRandomOrder()->limit(3)->get();
         $banner = Product::inRandomOrder()->limit(1)->get()->first();
         $offer = Product::inRandomOrder()->limit(1)->get()->first();
 
-        $bestSellers = Product::inRandomOrder()->limit(3)->get();
-        $newArrivals = Product::orderBy('created_at', 'asc')->limit(3)->get();
-        $topRated = Product::inRandomOrder()->limit(3)->get();
+        $closestAuction = Product::where('end_time', '>', now())
+            ->orderBy('end_time', 'asc')
+            ->limit(3)
+            ->get();
+        $newArrivals = Product::where('end_time', '>', now())
+            ->orderBy('created_at', 'asc')
+            ->limit(3)
+            ->get();
 
-        return view('index', compact('carousel', 'smallBanner', 'categories', 'trendingProduct', 'specialOffer', 'banner', 'offer', 'bestSellers', 'newArrivals', 'topRated'));
+        return view('index', compact('carousel', 'smallBanner', 'categories', 'trendingProduct', 'specialOffer', 'banner', 'offer', 'closestAuction', 'newArrivals'));
     }
 
     public function category(Request $request)

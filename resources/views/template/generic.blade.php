@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="navbar-cart me-2">
-                                    <div class="cart-items me-2">
+                                    <div class="cart-items me-2 d-none d-lg-block">
                                         <a href="javascript:void(0)" class="main-btn">
                                             <i class="bx bx-low-vision"></i>
                                             <span class="total-items">{{ auth()->user()->watchlists->count() }}</span>
@@ -134,7 +134,7 @@
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
-                                <div class="cart-items">
+                                <div class="cart-items d-none d-lg-block">
                                     <a href="javascript:void(0)" class="main-btn">
                                         <i class="bx bx-cart"></i>
                                         <span class="total-items">{{ $wonProducts->count() }}</span>
@@ -183,13 +183,16 @@
                                     </div>
                                     <!--/ End Shopping Item -->
                                 </div>
+                                <div class="button d-lg-none">
+                                    <a href="{{ route('logout') }}" class="btn">Logout</a>
+                                </div>
                             </div>
                         @else
                             <div class="navbar-cart ms-auto">
                                 {{-- <span id="dark-mode-toggle">
                                     <i class='bx bx-sun'></i>
                                 </span> --}}
-                                <div class="button me-2 d-sm-none d-lg-block">
+                                <div class="button me-2 d-none d-lg-block">
                                     <a href="/register" class="btn">Register</a>
                                 </div>
                                 <div class="button">
@@ -280,23 +283,105 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <!-- Start Nav Social -->
                         <div class="nav-social">
-                            {{-- <h5 class="title">Follow Us:</h5>
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0)"><i class="bx bxl-facebook-circle"></i></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><i class="bx bxl-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><i class="bx bxl-linkedin"></i></a>
-                                </li>
-                            </ul> --}}
                             <h5 class="title">Balance: <span
                                     id="balance">{{ formatRupiah(auth()->user()->balance) }}</span></h5>
+                            <div class="navbar-cart me-2">
+                                <div class="cart-items me-2 d-block d-lg-none">
+                                    <a href="javascript:void(0)" class="main-btn">
+                                        <i class="bx bx-low-vision"></i>
+                                        <span class="total-items">{{ auth()->user()->watchlists->count() }}</span>
+                                    </a>
+                                    <!-- Shopping Item -->
+                                    <div class="shopping-item" style="z-index: 1000">
+                                        <p class="p-0">Watchlist</p>
+                                        <ul class="shopping-list"
+                                            style="
+                                                max-height: 400px;
+                                                overflow: auto;
+                                            ">
+                                            @foreach (auth()->user()->watchlists as $watchlistItem)
+                                                @if ($loop->iteration > 3)
+                                                @break
+                                            @endif
+                                            <li>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img"
+                                                        href="/product/{{ $watchlistItem->product->id }}">
+                                                        <img src="{{ $watchlistItem->product->images()->first() ? asset('storage' . $watchlistItem->product->images()->first()->image_url) : 'https://via.placeholder.com/500x500' }}"
+                                                            alt="{{ $watchlistItem->name }}">
+                                                    </a>
+                                                </div>
+
+                                                <div class="content d-flex align-items-center">
+                                                    <div>
+                                                        <h4 class="d-inline-block text-truncate"
+                                                            style="max-width: 160px;"><a
+                                                                href="/product/{{ $watchlistItem->product->id }}">
+                                                                {{ $watchlistItem->product->name }}</a></h4>
+                                                        <p class="quantity">
+                                                            {{ $watchlistItem->product->lastbid() ? $watchlistItem->product->lastbid()->user->first_name . ' - ' : '' }}
+                                                            <span
+                                                                class="amount text-primary">{{ formatRupiah($watchlistItem->product->getTotalBidAmountAttribute()) }}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    <a href="{{ route('watchlist.index') }}"
+                                        class="d-flex justify-content-center mt-2">See all</a>
+                                </div>
+                                <!--/ End Shopping Item -->
+                            </div>
+                            <div class="cart-items d-block d-lg-none">
+                                <a href="javascript:void(0)" class="main-btn">
+                                    <i class="bx bx-cart"></i>
+                                    <span class="total-items">{{ $wonProducts->count() }}</span>
+                                </a>
+                                <!-- Shopping Item -->
+                                <div class="shopping-item" style="z-index: 1000;">
+                                    <div class="dropdown-cart-header">
+                                        <span>{{ $wonProducts->count() }} Items</span>
+                                        <a class="text-primary fw-" href="{{ route('cart.checkout') }}">View
+                                            All</a>
+                                    </div>
+                                    <ul class="shopping-list"
+                                        style="
+                                                max-height: 200px;
+                                                overflow: auto;
+                                            ">
+                                        @foreach ($wonProducts as $product)
+                                            <li>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img" href="/product/{{ $product->id }}">
+                                                        <img src="{{ $product->images()->first() ? asset('storage' . $product->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                                            alt="#">
+                                                    </a>
+                                                </div>
+
+                                                <div class="content">
+                                                    <h4><a href="/product/{{ $product->id }}">
+                                                            {{ $product->name }}</a></h4>
+                                                    <p class="quantity"><span
+                                                            class="amount">{{ formatRupiah($product->getTotalBidAmountAttribute()) }}</span>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    <div class="bottom">
+                                        <div class="total">
+                                            <span>Total</span>
+                                            <span class="total-amount">{{ formatRupiah($totalPrice) }}</span>
+                                        </div>
+                                        <div class="button">
+                                            <a href="{{ route('cart.checkout') }}"
+                                                class="btn animate">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ End Shopping Item -->
+                            </div>
                         </div>
                         <!-- End Nav Social -->
                     </div>
@@ -309,184 +394,184 @@
 <!-- End Header Area -->
 
 @hasSection('title')
-    <!-- Start Breadcrumbs -->
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="breadcrumbs-content">
-                        <h1 class="page-title">@yield('title')</h1>
-                    </div>
+<!-- Start Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="breadcrumbs-content">
+                    <h1 class="page-title">@yield('title')</h1>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <ul class="breadcrumb-nav">
-                        @if (count(Request::segments()) == 2 && !is_numeric(Request::segment(2)))
-                            <li>{{ Request::segment(count(Request::segments()) - 1) }}</li>
-                        @else
-                            <li><a href="{{ route('home') }}"><i class="bx bx-home"></i> Home</a></li>
-                        @endif
-                        <li>@yield('title')</li>
-                    </ul>
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <ul class="breadcrumb-nav">
+                    @if (count(Request::segments()) == 2 && !is_numeric(Request::segment(2)))
+                        <li>{{ Request::segment(count(Request::segments()) - 1) }}</li>
+                    @else
+                        <li><a href="{{ route('home') }}"><i class="bx bx-home"></i> Home</a></li>
+                    @endif
+                    <li>@yield('title')</li>
+                </ul>
             </div>
         </div>
     </div>
-    <!-- End Breadcrumbs -->
+</div>
+<!-- End Breadcrumbs -->
 @endif
 
 @include('sweetalert::alert')
 
 <div class="bg-light">
-    @yield('content')
+@yield('content')
 </div>
 
 <!-- Start Footer Area -->
 <footer class="footer">
-    <!-- Start Footer Top -->
-    <div class="footer-top">
-        <div class="container">
-            <div class="inner-content">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-12">
-                        <div class="footer-logo">
-                            <a href="{{ route('home') }}">
-                                <img src="{{ asset('assets/images/logo/white-logo.svg') }}" alt="#">
-                            </a>
-                        </div>
+<!-- Start Footer Top -->
+<div class="footer-top">
+    <div class="container">
+        <div class="inner-content">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="footer-logo">
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('assets/images/logo/white-logo.svg') }}" alt="#">
+                        </a>
                     </div>
-                    <div class="col-lg-9 col-md-8 col-12">
-                        <div class="footer-newsletter">
-                            <h4 class="title">
-                                Subscribe to our Newsletter
-                                <span>Get all the latest information, Sales and Offers.</span>
-                            </h4>
-                            <div class="newsletter-form-head">
-                                <form action="#" method="get" target="_blank" class="newsletter-form">
-                                    <input name="EMAIL" placeholder="Email address here..." type="email">
-                                    <div class="button">
-                                        <button class="btn">Subscribe<span class="dir-part"></span></button>
-                                    </div>
-                                </form>
-                            </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-12">
+                    <div class="footer-newsletter">
+                        <h4 class="title">
+                            Subscribe to our Newsletter
+                            <span>Get all the latest information, Sales and Offers.</span>
+                        </h4>
+                        <div class="newsletter-form-head">
+                            <form action="#" method="get" target="_blank" class="newsletter-form">
+                                <input name="EMAIL" placeholder="Email address here..." type="email">
+                                <div class="button">
+                                    <button class="btn">Subscribe<span class="dir-part"></span></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Footer Top -->
-    <!-- Start Footer Middle -->
-    <div class="footer-middle">
-        <div class="container">
-            <div class="bottom-inner">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-contact">
-                            <h3>Get In Touch With Us</h3>
-                            <p class="phone">Phone: +1 (900) 33 169 7720</p>
-                            <ul>
-                                <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
-                                <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
-                            </ul>
-                            <p class="mail">
-                                <a href="mailto:support@lelanginaja.com">support@lelanginaja.com</a>
-                            </p>
-                        </div>
-                        <!-- End Single Widget -->
+</div>
+<!-- End Footer Top -->
+<!-- Start Footer Middle -->
+<div class="footer-middle">
+    <div class="container">
+        <div class="bottom-inner">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="single-footer f-contact">
+                        <h3>Get In Touch With Us</h3>
+                        <p class="phone">Phone: +1 (900) 33 169 7720</p>
+                        <ul>
+                            <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
+                            <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
+                        </ul>
+                        <p class="mail">
+                            <a href="mailto:support@lelanginaja.com">support@lelanginaja.com</a>
+                        </p>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer our-app">
-                            <h3>Our Mobile App</h3>
-                            <ul class="app-btn">
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <i class="bx bxl-apple"></i>
-                                        <span class="small-title">Download on the</span>
-                                        <span class="big-title">App Store</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <i class="bx bxl-play-store"></i>
-                                        <span class="small-title">Download on the</span>
-                                        <span class="big-title">Google Play</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-link">
-                            <h3>Information</h3>
-                            <ul>
-                                <li><a href="/about">About Us</a></li>
-                                <li><a href="/contact">Contact Us</a></li>
-                                <li><a href="/faq">FAQs Page</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-link">
-                            <h3>Categories</h3>
-                            <ul>
-                                @for ($i = 0; isset($categories[$i]) && $i <= 4; $i++)
-                                    <li><a
-                                            href="{{ $categories[$i]->id }}">{{ str_replace('_', ' ', $categories[$i]->name) }}</a>
-                                    </li>
-                                @endfor
-                            </ul>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
+                    <!-- End Single Widget -->
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Footer Middle -->
-    <!-- Start Footer Bottom -->
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="inner-content">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-12">
-                        <div class="payment-gateway">
-                            <span>We Accept:</span>
-                            <img src="{{ asset('assets/images/footer/credit-cards-footer.png') }}"
-                                alt="#">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <div class="copyright">
-                            <p>&copy; {{ date('Y') }} LelanginAja</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-12">
-                        <ul class="socila">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="single-footer our-app">
+                        <h3>Our Mobile App</h3>
+                        <ul class="app-btn">
                             <li>
-                                <span>Follow Us On:</span>
+                                <a href="javascript:void(0)">
+                                    <i class="bx bxl-apple"></i>
+                                    <span class="small-title">Download on the</span>
+                                    <span class="big-title">App Store</span>
+                                </a>
                             </li>
-                            <li><a href="javascript:void(0)"><i class="bx bxl-facebook-circle"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="bx bxl-instagram"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="bx bxl-google"></i></a></li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <i class="bx bxl-play-store"></i>
+                                    <span class="small-title">Download on the</span>
+                                    <span class="big-title">Google Play</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="single-footer f-link">
+                        <h3>Information</h3>
+                        <ul>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+                            <li><a href="/faq">FAQs Page</a></li>
+                        </ul>
+                    </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="single-footer f-link">
+                        <h3>Categories</h3>
+                        <ul>
+                            @for ($i = 0; isset($categories[$i]) && $i <= 4; $i++)
+                                <li><a
+                                        href="{{ $categories[$i]->id }}">{{ str_replace('_', ' ', $categories[$i]->name) }}</a>
+                                </li>
+                            @endfor
+                        </ul>
+                    </div>
+                    <!-- End Single Widget -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Footer Bottom -->
+</div>
+<!-- End Footer Middle -->
+<!-- Start Footer Bottom -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="inner-content">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-12">
+                    <div class="payment-gateway">
+                        <span>We Accept:</span>
+                        <img src="{{ asset('assets/images/footer/credit-cards-footer.png') }}"
+                            alt="#">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="copyright">
+                        <p>&copy; {{ date('Y') }} LelanginAja</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <ul class="socila">
+                        <li>
+                            <span>Follow Us On:</span>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="bx bxl-facebook-circle"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="bx bxl-twitter"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="bx bxl-instagram"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="bx bxl-google"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Footer Bottom -->
 </footer>
 <!--/ End Footer Area -->
 
 <!-- Bottom Navbar -->
-<nav class="navbar navbar-dark bg-primary navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none p-0">
+{{-- <nav class="navbar navbar-dark bg-primary navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none p-0">
     <ul class="navbar-nav nav-justified w-100">
         <li class="nav-item">
             <a href="#" class="nav-link text-center">
@@ -531,13 +616,13 @@
             </div>
         </li>
     </ul>
-</nav>
+</nav> --}}
 
 
 
 <!-- ========================= scroll-top ========================= -->
 <a href="#" class="scroll-top">
-    <i class="bx bx-chevron-up"></i>
+<i class="bx bx-chevron-up"></i>
 </a>
 
 <!-- ========================= JS here ========================= -->

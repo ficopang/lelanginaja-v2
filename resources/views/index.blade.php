@@ -313,17 +313,17 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12 custom-responsive-margin">
                     <h4 class="list-title">Closest Auction</h4>
-                    @foreach ($bestSellers as $bs)
+                    @foreach ($closestAuction as $ca)
                         <!-- Start Single List -->
                         <div class="single-list">
                             <div class="list-image">
-                                <a href="/product/{{ $bs->id }}"><img
-                                        src="{{ $bs->images()->first() ? asset('storage' . $bs->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
-                                        alt="{{ $bs->name }}" /></a>
+                                <a href="/product/{{ $ca->id }}"><img
+                                        src="{{ $ca->images()->first() ? asset('storage' . $ca->images()->first()->image_url) : 'https://via.placeholder.com/1000x1000' }}"
+                                        alt="{{ $ca->name }}" /></a>
                             </div>
                             <div class="list-info">
                                 <h3>
-                                    <a href="/product/{{ $bs->id }}">{{ $bs->name }}</a>
+                                    <a href="/product/{{ $ca->id }}">{{ $ca->name }}</a>
                                 </h3>
                                 <span>{{ formatRupiah($product->total_bid_amount) }}</span>
                             </div>
