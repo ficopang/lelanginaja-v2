@@ -106,6 +106,7 @@ class TransactionController extends Controller
             $shippingAddress->province = $request->province;
             $shippingAddress->country = $request->country;
             $shippingAddress->postal_code = $request->postal_code;
+            $shippingAddress->courier = "LelanginAja Courier";
             $shippingAddress->status = $status;
             $shippingAddress->save();
         }
