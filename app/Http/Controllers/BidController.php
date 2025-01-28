@@ -32,14 +32,17 @@ class BidController extends Controller
 
         // get latest bid and refund
         $latestBid = $product->bids()->latest('created_at')->first();
-        $latestBidder = User::findOrFail($latestBid->user_id);
-        $latestBidder->balance += $product->getTotalBidAmountAttribute();
+        if ($latestBid) {
+            $latestBidder = User::find($latestBid->user_id);
+            $latestBidder->balance += $product->getTotalBidAmountAttribute();
 
-        if ($latestBid->user_id != auth()->user()->id && auth()->user()->balance < $product->getTotalBidAmountAttribute() + $request->input('bid_amount')) {
-            return response()->json(['error' => 'Insufficient balancez'], 400);
-        } else if ($latestBid->user_id == auth()->user()->id && $latestBidder->balance < $product->getTotalBidAmountAttribute() + $request->input('bid_amount')) {
-            return response()->json(['error' => 'Insufficient balance'], 400);
+            if ($latestBid->user_id != auth()->user()->id && auth()->user()->balance < $product->getTotalBidAmountAttribute() + $request->input('bid_amount')) {
+                return response()->json(['error' => 'Insufficient balancez'], 400);
+            } else if ($latestBid->user_id == auth()->user()->id && $latestBidder->balance < $product->getTotalBidAmountAttribute() + $request->input('bid_amount')) {
+                return response()->json(['error' => 'Insufficient balance'], 400);
+            }
         }
+
 
         // Check if bid time is within 30 seconds of the end time
         $endTime = Carbon::parse($product->end_time);
@@ -50,7 +53,9 @@ class BidController extends Controller
             return response()->json(['error' => 'Time limit exceeded'], 400);
         }
 
-        $latestBidder->save();
+        if ($latestBid) {
+            $latestBidder->save();
+        }
 
         // deduct user balance
         $user = User::findOrFail(auth()->id());

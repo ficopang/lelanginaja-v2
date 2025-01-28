@@ -515,7 +515,7 @@
                         addNewBid(formatRupiah(latestBidValue));
 
                         const balanceElement = document.getElementById('balance');
-                        balanceElement.textContent = response.balance;
+                        balanceElement.textContent = formatRupiah(response.balance);
                     @endif
                 } else {
                     vt.error(response.error, {
